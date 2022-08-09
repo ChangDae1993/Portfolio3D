@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HeroCtrl : MonoBehaviour
 {
-    float m_MoveVelocity = 5.0f;    //평면 초당 이동 속도
+    float m_MoveVelocity = 3.0f;    //평면 초당 이동 속도
 
     //---키보드 입력 이동 관련 변수 선언
     float h = 0, v = 0;
@@ -48,10 +48,10 @@ public class HeroCtrl : MonoBehaviour
         v = Input.GetAxisRaw("Vertical");
         //---가감속 없이 이동 처리 하는 방법
 
-        if (v <= 0.0f)
-            v = 0.0f;
 
-        if(0.0f != h || 0.0f != v)
+        Debug.Log(v);
+
+        if (0.0f < h || 0.0f < v)
         {
             animator.SetBool("IsMove", true);
             //---일반적인 이동 계산법
@@ -67,6 +67,24 @@ public class HeroCtrl : MonoBehaviour
         else
         {
             animator.SetBool("IsMove", false);
+        }
+
+        if (v < 0.0f)
+        {
+            animator.SetBool("IsBMove", true);
+            //---일반적인 이동 계산법
+            a_CalcRotY = transform.eulerAngles.y;
+            a_CalcRotY = a_CalcRotY + (h * rotSpeed * Time.deltaTime);
+            transform.eulerAngles = new Vector3(0.0f, a_CalcRotY, 0.0f);
+
+            MoveVStep = transform.forward * v;
+            MoveNextStep = MoveVStep.normalized * m_MoveVelocity * Time.deltaTime;
+            transform.position = transform.position + MoveNextStep;
+            //---일반적인 이동 계산법
+        }
+        else
+        {
+            animator.SetBool("IsBMove", false);
         }
     }
 }
