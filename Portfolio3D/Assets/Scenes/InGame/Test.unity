@@ -717,6 +717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d2148133a5bbc8419d83c929f86041e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  P_State: 0
 --- !u!136 &2106230014
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2642,10 +2643,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2836004473770509732}
+  - component: {fileID: 2106230013}
   - component: {fileID: 2836004475528542753}
   - component: {fileID: 2106230014}
   - component: {fileID: 2836004473770678661}
-  - component: {fileID: 2106230013}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player

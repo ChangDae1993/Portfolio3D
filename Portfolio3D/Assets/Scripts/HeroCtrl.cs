@@ -12,6 +12,7 @@ public enum PlayerState
     Jump,
     noAim,
     Aim,
+    AimShoot,
     Shoot,
     AutoShoot,
     BurstShoot,
@@ -19,6 +20,7 @@ public enum PlayerState
     Hit,
     Die
 }
+
 
 public class HeroCtrl : MonoBehaviour
 {
@@ -62,7 +64,12 @@ public class HeroCtrl : MonoBehaviour
 
         if(Input.GetMouseButton(1))
         {
-            Debug.Log("Aim");
+            P_State = PlayerState.Aim;
+
+            if(P_State == PlayerState.Aim)
+            {
+                PlayerAimFunc();
+            }
         }
         else
         {
@@ -77,11 +84,11 @@ public class HeroCtrl : MonoBehaviour
         v = Input.GetAxisRaw("Vertical");
         //---가감속 없이 이동 처리 하는 방법
 
-
-        Debug.Log(v);
+        //Debug.Log(v);
 
         if (0.0f != h || 0.0f < v)
         {
+            P_State = PlayerState.Walk;
             animator.SetBool("IsMove", true);
             //---일반적인 이동 계산법
             a_CalcRotY = transform.eulerAngles.y;
@@ -95,11 +102,13 @@ public class HeroCtrl : MonoBehaviour
         }
         else
         {
+            P_State = PlayerState.Idle;
             animator.SetBool("IsMove", false);
         }
 
         if (v < 0.0f)
         {
+            P_State = PlayerState.Walk;
             animator.SetBool("IsBMove", true);
             //---일반적인 이동 계산법
             a_CalcRotY = transform.eulerAngles.y;
@@ -114,6 +123,14 @@ public class HeroCtrl : MonoBehaviour
         else
         {
             animator.SetBool("IsBMove", false);
+        }
+    }
+
+    void PlayerAimFunc()
+    {
+        if(Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("Aim");
         }
     }
 }
