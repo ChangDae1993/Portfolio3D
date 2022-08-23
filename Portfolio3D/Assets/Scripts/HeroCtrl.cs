@@ -2,8 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PlayerState
+{
+    Idle,
+    Walk,
+    Run,
+    runGuard,
+    Ducking,
+    Jump,
+    noAim,
+    Aim,
+    Shoot,
+    AutoShoot,
+    BurstShoot,
+    Reload,
+    Hit,
+    Die
+}
+
 public class HeroCtrl : MonoBehaviour
 {
+    public PlayerState P_State;
+
     float m_MoveVelocity = 3.0f;    //평면 초당 이동 속도
 
     //---키보드 입력 이동 관련 변수 선언
@@ -31,7 +51,7 @@ public class HeroCtrl : MonoBehaviour
 
     private void StartFunc()
     {
-         
+        P_State = PlayerState.Idle;
     }
 
     private void Update() => UpdateFunc();
@@ -39,6 +59,15 @@ public class HeroCtrl : MonoBehaviour
     private void UpdateFunc()
     {
         KeyBDMove();
+
+        if(Input.GetMouseButton(1))
+        {
+            Debug.Log("Aim");
+        }
+        else
+        {
+            Debug.Log("AimX");
+        }
     }
 
     void KeyBDMove()    //키보드 이동
@@ -51,7 +80,7 @@ public class HeroCtrl : MonoBehaviour
 
         Debug.Log(v);
 
-        if (0.0f < h || 0.0f < v)
+        if (0.0f != h || 0.0f < v)
         {
             animator.SetBool("IsMove", true);
             //---일반적인 이동 계산법
