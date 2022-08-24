@@ -21,7 +21,6 @@ public class Player_Input : MonoBehaviour
     private void StartFunc()
     {
         Pl_State = GetComponent<Player_State_Ctrl>();
-
     }
 
     private void Update() => UpdateFunc();
