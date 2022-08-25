@@ -12,11 +12,13 @@ public class Player_Rotate : MonoBehaviour
     private float mx;
     private float my;
 
+    private Camera cam;
+
     private void Start() => StartFunc();
 
     private void StartFunc()
     {
-         
+        cam = Camera.main;
     }
 
     private void Update() => UpdateFunc();
@@ -43,7 +45,9 @@ public class Player_Rotate : MonoBehaviour
             my = -90;
         }
 
-        transform.eulerAngles = new Vector3(-my, mx, 0);
+        transform.eulerAngles = new Vector3(/*-my*/0, mx, 0);
+
+        cam.transform.eulerAngles = new Vector3(-my, 0, 0);
 
     }
 }
