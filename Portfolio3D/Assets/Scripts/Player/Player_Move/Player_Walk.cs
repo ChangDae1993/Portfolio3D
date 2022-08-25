@@ -48,7 +48,7 @@ public class Player_Walk : MonoBehaviour
 
         if (0.0f != P_Input.h || 0.0f < P_Input.v)
         {
-            Pl_State.P_State = PlayerState.Walk;
+            Pl_State.P_State = PlayerMoveState.Walk;
             animator.SetBool("IsMove", true);
             //---일반적인 이동 계산법
             a_CalcRotY = transform.eulerAngles.y;
@@ -62,13 +62,13 @@ public class Player_Walk : MonoBehaviour
         }
         else
         {
-            //P_State = PlayerState.Idle;
+            //P_State = PlayerMoveState.Idle;
             animator.SetBool("IsMove", false);
         }
 
         if (P_Input.v < 0.0f)
         {
-            //P_State = PlayerState.Walk;
+            //P_State = PlayerMoveState.Walk;
             animator.SetBool("IsBMove", true);
             //---일반적인 이동 계산법
             a_CalcRotY = transform.eulerAngles.y;

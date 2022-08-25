@@ -9,6 +9,9 @@ public class Player_Input : MonoBehaviour
     public float v;
     public float h;
 
+    //에임을 켰는지 안켰는지 확인하는 bool값
+    [SerializeField] bool isAim;
+
     private void Awake()
     {
         CameraCtrl a_CamCtrl = Camera.main.GetComponent<CameraCtrl>();
@@ -21,13 +24,13 @@ public class Player_Input : MonoBehaviour
     private void StartFunc()
     {
         Pl_State = GetComponent<Player_State_Ctrl>();
+        isAim = false;
     }
 
     private void Update() => UpdateFunc();
 
     private void UpdateFunc()
     {
-
         //---가감속 없이 이동 처리 하는 방법
         h = Input.GetAxisRaw("Horizontal");
         v = Input.GetAxisRaw("Vertical");
@@ -35,8 +38,30 @@ public class Player_Input : MonoBehaviour
 
         if (0.0f != h || 0.0f < v)
         {
-            //Debug.Log("A");
-            Pl_State.P_State = PlayerState.Walk;
+            Pl_State.P_State = PlayerMoveState.Walk;
         }
+
+        if(Input.GetMouseButton(1))
+        {
+            Pl_State.P_AttaState = PlayerAttackState.Aim;
+            isAim = true;
+        }
+        else
+        {
+            isAim = false;
+            Pl_State.P_AttaState = PlayerAttackState.noAim;
+        }
+
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Pl_State.P_AttaState = PlayerAttackState.Shoot;
+
+            if(isAim == true)
+            {
+                Pl_State.P_AttaState = PlayerAttackState.AimShoot;
+            }
+        }
+
     }
 }
