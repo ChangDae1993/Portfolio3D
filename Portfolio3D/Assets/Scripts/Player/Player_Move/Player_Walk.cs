@@ -18,8 +18,6 @@ public class Player_Walk : MonoBehaviour
     Vector3 MoveHStep;
     Vector3 MoveVStep;
 
-    float a_CalcRotY = 0.0f;
-    float rotSpeed = 150.0f;    //초당 150도 회전하라는 속도
     //---키보드 입력 이동 관련 변수 선언
 
     private void Start() => StartFunc();
@@ -29,7 +27,6 @@ public class Player_Walk : MonoBehaviour
         Pl_State = GetComponent<Player_State_Ctrl>();
         P_Input = GetComponent<Player_Input>();
         animator = GetComponent<Animator>();
-
     }
 
     private void Update() => UpdateFunc();
