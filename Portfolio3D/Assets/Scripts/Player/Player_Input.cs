@@ -10,13 +10,10 @@ public class Player_Input : MonoBehaviour
     public float h;
 
     //에임을 켰는지 안켰는지 확인하는 bool값
-    [SerializeField] bool isAim;
+    public bool isAim;
 
     private void Awake()
     {
-        CameraCtrl a_CamCtrl = Camera.main.GetComponent<CameraCtrl>();
-        if (a_CamCtrl != null)
-            a_CamCtrl.InitCamera(this.gameObject);
     }
 
     private void Start() => StartFunc();

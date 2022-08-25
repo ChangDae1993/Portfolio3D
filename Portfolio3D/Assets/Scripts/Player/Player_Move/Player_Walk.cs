@@ -46,34 +46,21 @@ public class Player_Walk : MonoBehaviour
         //v = Input.GetAxisRaw("Vertical");
         ////---가감속 없이 이동 처리 하는 방법
 
-        if (0.0f != P_Input.h || 0.0f < P_Input.v)
+        if (0.0f < P_Input.v)
         {
             Pl_State.P_State = PlayerMoveState.Walk;
             animator.SetBool("IsMove", true);
-            //---일반적인 이동 계산법
-            a_CalcRotY = transform.eulerAngles.y;
-            a_CalcRotY = a_CalcRotY + (P_Input.h * rotSpeed * Time.deltaTime);
-            transform.eulerAngles = new Vector3(0.0f, a_CalcRotY, 0.0f);
 
             MoveVStep = transform.forward * P_Input.v;
             MoveNextStep = MoveVStep.normalized * m_MoveVelocity * Time.deltaTime;
             transform.position = transform.position + MoveNextStep;
             //---일반적인 이동 계산법
         }
-        else
-        {
-            //P_State = PlayerMoveState.Idle;
-            animator.SetBool("IsMove", false);
-        }
 
         if (P_Input.v < 0.0f)
         {
-            //P_State = PlayerMoveState.Walk;
+            Pl_State.P_State = PlayerMoveState.Walk;
             animator.SetBool("IsBMove", true);
-            //---일반적인 이동 계산법
-            a_CalcRotY = transform.eulerAngles.y;
-            a_CalcRotY = a_CalcRotY + (P_Input.h * rotSpeed * Time.deltaTime);
-            transform.eulerAngles = new Vector3(0.0f, a_CalcRotY, 0.0f);
 
             MoveVStep = transform.forward * P_Input.v;
             MoveNextStep = MoveVStep.normalized * m_MoveVelocity * Time.deltaTime;
@@ -84,5 +71,31 @@ public class Player_Walk : MonoBehaviour
         {
             animator.SetBool("IsBMove", false);
         }
+
+        if (0.0f < P_Input.h)
+        {
+            Pl_State.P_State = PlayerMoveState.Walk;
+            animator.SetBool("IsMove", true);
+            MoveVStep = transform.right * P_Input.h;
+            MoveNextStep = MoveVStep.normalized * m_MoveVelocity * Time.deltaTime;
+            transform.position = transform.position + MoveNextStep;
+        }
+
+        if(P_Input.h < 0.0f)
+        {
+            Pl_State.P_State = PlayerMoveState.Walk;
+            animator.SetBool("IsMove", true);
+            MoveVStep = transform.right * P_Input.h;
+            MoveNextStep = MoveVStep.normalized * m_MoveVelocity * Time.deltaTime;
+            transform.position = transform.position + MoveNextStep;
+        }
+
+        if (P_Input.h == 0.0f && P_Input.v == 0.0f)
+        {
+            animator.SetBool("IsMove", false);
+        }
+
+
+
     }
 }

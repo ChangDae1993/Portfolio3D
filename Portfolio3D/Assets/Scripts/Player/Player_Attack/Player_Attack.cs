@@ -5,12 +5,14 @@ using UnityEngine;
 public class Player_Attack : MonoBehaviour
 {
     Player_State_Ctrl Pl_State;
+    Player_Input P_Input;
 
     private void Start() => StartFunc();
 
     private void StartFunc()
     {
         Pl_State = GetComponent<Player_State_Ctrl>();
+        P_Input = GetComponent<Player_Input>();
     }
 
     private void Update() => UpdateFunc();
@@ -22,9 +24,11 @@ public class Player_Attack : MonoBehaviour
             PlayerShootFunc();
         }
 
-        if(Pl_State.P_AttaState == PlayerAttackState.AimShoot)
+        PlayerAimFunc();
+
+        if (Pl_State.P_AttaState == PlayerAttackState.AimShoot)
         {
-            PlayerAimFunc();
+            PlayerAimAttFunc();
         }
     }
 
@@ -33,8 +37,20 @@ public class Player_Attack : MonoBehaviour
         Debug.Log("Shoot");
     }
 
-
     void PlayerAimFunc()
+    {
+        if(P_Input.isAim)
+        {
+            Debug.Log("¡‹¿Œ");
+        }
+        else
+        {
+            //Debug.Log("¡‹æ∆øÙ");
+        }
+    }
+
+
+    void PlayerAimAttFunc()
     {
         Debug.Log("AimShoot");
     }
