@@ -45,9 +45,7 @@ public class Player_Rotate : MonoBehaviour
             my = -90;
         }
 
-        transform.eulerAngles = new Vector3(/*-my*/0, mx, 0);
-
-        cam.transform.eulerAngles = new Vector3(-my, 0, 0);
+        transform.eulerAngles = new Vector3(-my, mx, 0);
 
     }
 }
