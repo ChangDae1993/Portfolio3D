@@ -35,14 +35,14 @@ public class Player_Rotate : MonoBehaviour
         mx += rh * rot_speed * Time.deltaTime;
         my += rv * rot_speed * Time.deltaTime;
 
-        if(my >= 90)
+        if(my >= 30)
         {
-            my = 90;
+            my = 30;
         }
 
-        if(my <= -90)
+        if(my <= -30)
         {
-            my = -90;
+            my = -30;
         }
 
         transform.eulerAngles = new Vector3(-my, mx, 0);

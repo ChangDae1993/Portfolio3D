@@ -37,6 +37,10 @@ public class Player_Input : MonoBehaviour
         {
             Pl_State.P_State = PlayerMoveState.Walk;
         }
+        else
+        {
+            Pl_State.P_State = PlayerMoveState.Idle;
+        }
 
         if(Input.GetMouseButton(1))
         {

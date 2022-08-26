@@ -7,12 +7,15 @@ public class Player_Attack : MonoBehaviour
     Player_State_Ctrl Pl_State;
     Player_Input P_Input;
 
+    Animator animator;
+
     private void Start() => StartFunc();
 
     private void StartFunc()
     {
         Pl_State = GetComponent<Player_State_Ctrl>();
         P_Input = GetComponent<Player_Input>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update() => UpdateFunc();
@@ -42,9 +45,19 @@ public class Player_Attack : MonoBehaviour
         if(P_Input.isAim)
         {
             Debug.Log("¡‹¿Œ");
+            if(Pl_State.P_State == PlayerMoveState.Idle)
+            {
+                animator.SetBool("IsIdleAim", true);
+            }
+
+            if(Pl_State.P_State != PlayerMoveState.Idle)
+            {
+                animator.SetBool("IsIdleAim", false);
+            }
         }
         else
         {
+            animator.SetBool("IsIdleAim", false);
             //Debug.Log("¡‹æ∆øÙ");
         }
     }
