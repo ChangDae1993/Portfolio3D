@@ -74,8 +74,8 @@ public class Player_Walk : MonoBehaviour
         {
             Pl_State.P_State = PlayerMoveState.Walk;
             animator.SetBool("IsMove", true);
-            MoveVStep = transform.right * P_Input.h;
-            MoveNextStep = MoveVStep.normalized * m_MoveVelocity * Time.deltaTime;
+            MoveHStep = transform.right * P_Input.h;
+            MoveNextStep = MoveHStep.normalized * m_MoveVelocity * Time.deltaTime;
             transform.position = transform.position + MoveNextStep;
         }
 
@@ -83,8 +83,8 @@ public class Player_Walk : MonoBehaviour
         {
             Pl_State.P_State = PlayerMoveState.Walk;
             animator.SetBool("IsMove", true);
-            MoveVStep = transform.right * P_Input.h;
-            MoveNextStep = MoveVStep.normalized * m_MoveVelocity * Time.deltaTime;
+            MoveHStep = transform.right * P_Input.h;
+            MoveNextStep = MoveHStep.normalized * m_MoveVelocity * Time.deltaTime;
             transform.position = transform.position + MoveNextStep;
         }
 
