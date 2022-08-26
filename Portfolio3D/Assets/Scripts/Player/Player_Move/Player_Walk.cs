@@ -14,7 +14,7 @@ public class Player_Walk : MonoBehaviour
 
     float m_MoveVelocity = 3.0f;    //평면 초당 이동 속도
 
-    float runSpeed = 15.0f;
+    float runSpeed = 20.0f;
 
     Vector3 MoveNextStep;   //보폭을 계산해 주기 위한 변수
     Vector3 MoveHStep;
