@@ -14,6 +14,7 @@ public class Player_Walk : MonoBehaviour
 
     float m_MoveVelocity = 3.0f;    //평면 초당 이동 속도
 
+    float runSpeed = 15.0f;
 
     Vector3 MoveNextStep;   //보폭을 계산해 주기 위한 변수
     Vector3 MoveHStep;
@@ -53,6 +54,21 @@ public class Player_Walk : MonoBehaviour
             MoveVStep = transform.forward * P_Input.v;
             MoveNextStep = MoveVStep.normalized * m_MoveVelocity * Time.deltaTime;
             transform.position = transform.position + MoveNextStep;
+
+            //정면으로 걸을 때 Dash추가
+            if (P_Input.isDash)
+            {
+                Pl_State.P_State = PlayerMoveState.Run;
+                animator.SetBool("IsRun", true);
+                MoveVStep = transform.forward * P_Input.v * runSpeed;
+                MoveNextStep = MoveVStep.normalized * m_MoveVelocity * Time.deltaTime;
+                transform.position = transform.position + MoveNextStep;
+            }
+            else
+            {
+                animator.SetBool("IsRun", false);
+                MoveVStep = transform.forward * P_Input.v;
+            }
         }
         else
         {
@@ -99,8 +115,6 @@ public class Player_Walk : MonoBehaviour
         {
             animator.SetBool("IsBMove", false);
         }
-
-
 
 
     }

@@ -12,6 +12,9 @@ public class Player_Input : MonoBehaviour
     //에임을 켰는지 안켰는지 확인하는 bool값
     public bool isAim;
 
+    //대쉬가 눌려있는지 확인하는 bool값
+    public bool isDash;
+
     private void Awake()
     {
     }
@@ -22,6 +25,7 @@ public class Player_Input : MonoBehaviour
     {
         Pl_State = GetComponent<Player_State_Ctrl>();
         isAim = false;
+        isDash = false;
     }
 
     private void Update() => UpdateFunc();
@@ -42,7 +46,17 @@ public class Player_Input : MonoBehaviour
             Pl_State.P_State = PlayerMoveState.Idle;
         }
 
-        if(Input.GetMouseButton(1))
+        if (0.0f != h || 0.0f < v && Input.GetKey(KeyCode.LeftShift))
+        {
+            isDash = true;
+
+        }
+        else
+        {
+            isDash = false;
+        }
+
+        if (Input.GetMouseButton(1))
         {
             Pl_State.P_AttaState = PlayerAttackState.Aim;
             isAim = true;
