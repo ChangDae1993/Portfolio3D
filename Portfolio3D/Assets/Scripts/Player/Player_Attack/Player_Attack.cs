@@ -9,6 +9,8 @@ public class Player_Attack : MonoBehaviour
 
     Animator animator;
 
+    Camera cam;
+
     private void Start() => StartFunc();
 
     private void StartFunc()
@@ -16,13 +18,14 @@ public class Player_Attack : MonoBehaviour
         Pl_State = GetComponent<Player_State_Ctrl>();
         P_Input = GetComponent<Player_Input>();
         animator = GetComponent<Animator>();
+        cam = Camera.main;
     }
 
     private void Update() => UpdateFunc();
 
     private void UpdateFunc()
     {
-        if(Pl_State.P_AttaState == PlayerAttackState.Shoot)
+        if (Pl_State.P_AttaState == PlayerAttackState.Shoot)
         {
             PlayerShootFunc();
         }
@@ -32,6 +35,11 @@ public class Player_Attack : MonoBehaviour
         if (Pl_State.P_AttaState == PlayerAttackState.AimShoot)
         {
             PlayerAimAttFunc();
+        }
+
+        if (P_Input.isAim)
+        {
+
         }
     }
 
