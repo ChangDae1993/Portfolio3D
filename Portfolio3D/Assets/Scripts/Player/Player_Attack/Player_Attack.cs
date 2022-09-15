@@ -9,8 +9,6 @@ public class Player_Attack : MonoBehaviour
     [SerializeField] private Camera cam;
     Animator animator;
 
-    Camera cam;
-
     private void Start() => StartFunc();
 
     private void StartFunc()
@@ -18,11 +16,7 @@ public class Player_Attack : MonoBehaviour
         Pl_State = GetComponent<Player_State_Ctrl>();
         P_Input = GetComponent<Player_Input>();
         animator = GetComponent<Animator>();
-<<<<<<< Updated upstream
-        cam = Camera.main;
-=======
         cam = GetComponentInChildren<Camera>();
->>>>>>> Stashed changes
     }
 
     private void Update() => UpdateFunc();
