@@ -6,7 +6,7 @@ public class Player_Attack : MonoBehaviour
 {
     Player_State_Ctrl Pl_State;
     Player_Input P_Input;
-
+    [SerializeField] private Camera cam;
     Animator animator;
 
     Camera cam;
@@ -18,7 +18,11 @@ public class Player_Attack : MonoBehaviour
         Pl_State = GetComponent<Player_State_Ctrl>();
         P_Input = GetComponent<Player_Input>();
         animator = GetComponent<Animator>();
+<<<<<<< Updated upstream
         cam = Camera.main;
+=======
+        cam = GetComponentInChildren<Camera>();
+>>>>>>> Stashed changes
     }
 
     private void Update() => UpdateFunc();
@@ -53,6 +57,12 @@ public class Player_Attack : MonoBehaviour
         if(P_Input.isAim)
         {
             Debug.Log("¡‹¿Œ");
+            cam.fieldOfView -= Time.deltaTime * 150.0f;
+
+            if(cam.fieldOfView <= 50)
+            {
+                cam.fieldOfView = 50;
+            }
             if(Pl_State.P_State == PlayerMoveState.Idle)
             {
                 animator.SetBool("IsIdleAim", true);
@@ -65,6 +75,12 @@ public class Player_Attack : MonoBehaviour
         }
         else
         {
+            cam.fieldOfView += Time.deltaTime * 150.0f;
+
+            if (cam.fieldOfView >= 70)
+            {
+                cam.fieldOfView = 70;
+            }
             animator.SetBool("IsIdleAim", false);
             //Debug.Log("¡‹æ∆øÙ");
         }
