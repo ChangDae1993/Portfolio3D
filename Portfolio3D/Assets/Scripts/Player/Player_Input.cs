@@ -49,7 +49,6 @@ public class Player_Input : MonoBehaviour
         if (0.0f != h || 0.0f < v && Input.GetKey(KeyCode.LeftShift))
         {
             isDash = true;
-
         }
         else
         {

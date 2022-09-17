@@ -23,28 +23,19 @@ public class Player_Attack : MonoBehaviour
 
     private void UpdateFunc()
     {
+        PlayerAimFunc();
+
         if (Pl_State.P_AttaState == PlayerAttackState.Shoot)
         {
             PlayerShootFunc();
         }
 
-        PlayerAimFunc();
-
         if (Pl_State.P_AttaState == PlayerAttackState.AimShoot)
         {
             PlayerAimAttFunc();
         }
-
-        if (P_Input.isAim)
-        {
-
-        }
     }
 
-    void PlayerShootFunc()
-    {
-        Debug.Log("Shoot");
-    }
 
     void PlayerAimFunc()
     {
@@ -80,9 +71,20 @@ public class Player_Attack : MonoBehaviour
         }
     }
 
+    void PlayerShootFunc()
+    {
+        Debug.Log("Shoot");
+        //Transform Shot_Pos받아와서 그 위치에서 총알 instantiate하기
+        //instantiate는 산탄도에 따라 Random.Range로 생성하기(에임 안하고있는 기준)
+        //총알 종류별로 다르게 resource.Load하기
+    }
+
 
     void PlayerAimAttFunc()
     {
+        //Transform Shot_Pos 받아와서 그 위치에서 총알 instantiate하기
+        //instantiate는 줌하고있는 상태의 총기별 산탄도에 따라 Random.Range로 생성하기
+        //총알 종류별로 다르게 resources.Load하기
         Debug.Log("AimShoot");
     }
 }
