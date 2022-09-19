@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player_Input : MonoBehaviour
 {
@@ -15,6 +16,11 @@ public class Player_Input : MonoBehaviour
     //대쉬가 눌려있는지 확인하는 bool값
     public bool isDash;
 
+    //총 발사 종류 검사할 int값
+    public int shotState;
+    public Image shotImg;
+    public Sprite[] shotSprite;
+
     private void Awake()
     {
     }
@@ -26,6 +32,7 @@ public class Player_Input : MonoBehaviour
         Pl_State = GetComponent<Player_State_Ctrl>();
         isAim = false;
         isDash = false;
+        shotState = 0;
     }
 
     private void Update() => UpdateFunc();
@@ -77,5 +84,18 @@ public class Player_Input : MonoBehaviour
             }
         }
 
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            shotState++;
+
+            if (shotState == 3)
+            {
+                shotState = 0;
+            }
+            Pl_State.P_WeaponState = (WeaponState)shotState;
+            shotImg.sprite = shotSprite[shotState];
+            Debug.Log((int)Pl_State.P_WeaponState);
+
+        }
     }
 }

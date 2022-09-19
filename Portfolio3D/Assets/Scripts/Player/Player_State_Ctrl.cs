@@ -26,6 +26,13 @@ public enum PlayerAttackState
     Reload,
 }
 
+public enum WeaponState
+{
+    singleShot = 0,
+    tripleShot = 1,
+    fullautoShot = 2 ,
+}
+
 public enum PlayerHitState
 {
     noHit,
@@ -38,7 +45,7 @@ public class Player_State_Ctrl : MonoBehaviour
     public PlayerMoveState P_State;
     public PlayerAttackState P_AttaState;
     public PlayerHitState P_HitState;
-
+    public WeaponState P_WeaponState;
     private void Start() => StartFunc();
 
     private void StartFunc()
@@ -46,5 +53,6 @@ public class Player_State_Ctrl : MonoBehaviour
         P_State = PlayerMoveState.Idle;
         P_AttaState = PlayerAttackState.noShoot;
         P_HitState = PlayerHitState.noHit;
+        P_WeaponState = WeaponState.singleShot;
     }
 }
