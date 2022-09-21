@@ -94,7 +94,7 @@ public class Player_Input : MonoBehaviour
             }
             Pl_State.P_WeaponState = (WeaponState)shotState;
             shotImg.sprite = shotSprite[shotState];
-            Debug.Log((int)Pl_State.P_WeaponState);
+            Debug.Log(Pl_State.P_WeaponState);
 
         }
     }
