@@ -52,5 +52,13 @@ public class XWing_Move : MonoBehaviour
         {
             X_Body.localRotation = Quaternion.Euler(0, 0, -20.0f);
         }
+        else if(X_Rotate.rh < 0.0f)
+        {
+            X_Body.localRotation = Quaternion.Euler(0, 0, 20.0f);
+        }
+        else
+        {
+            X_Body.localRotation = Quaternion.Euler(0, 0, 0);
+        }
     }
 }
