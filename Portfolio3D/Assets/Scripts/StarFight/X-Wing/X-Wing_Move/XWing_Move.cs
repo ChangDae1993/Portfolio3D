@@ -48,15 +48,15 @@ public class XWing_Move : MonoBehaviour
             transform.position = transform.position + MoveNextStep;
         }
 
-        if(X_Rotate.rh > 0.0f)
+        if (X_Rotate.rh > 0.5f)
         {
-            X_Body.localRotation = Quaternion.Euler(0, 0, -20.0f);
+            X_Body.localRotation = Quaternion.Euler(0, 0, -30.0f);
         }
-        else if(X_Rotate.rh < 0.0f)
+        else if (X_Rotate.rh < -0.5f)
         {
-            X_Body.localRotation = Quaternion.Euler(0, 0, 20.0f);
+            X_Body.localRotation = Quaternion.Euler(0, 0, 30.0f);
         }
-        else
+        else if (X_Rotate.rh == 0.0f)
         {
             X_Body.localRotation = Quaternion.Euler(0, 0, 0);
         }
