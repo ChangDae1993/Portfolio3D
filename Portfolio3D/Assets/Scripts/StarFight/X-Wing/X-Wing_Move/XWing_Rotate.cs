@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class XWing_Rotate : MonoBehaviour
 {
-    public float rot_speed = 200.0f;
+    public float rot_speed = 100.0f;
 
     public float rv;
     public float rh;
@@ -35,15 +35,15 @@ public class XWing_Rotate : MonoBehaviour
         mx += rh * rot_speed * Time.deltaTime;
         my += rv * rot_speed * Time.deltaTime;
 
-        //if (my >= 30)
-        //{
-        //    my = 30;
-        //}
+        if (my >= 40)
+        {
+            my = 40;
+        }
 
-        //if (my <= -30)
-        //{
-        //    my = -30;
-        //}
+        if (my <= -40)
+        {
+            my = -40;
+        }
 
         transform.eulerAngles = new Vector3(-my, mx, 0);
 

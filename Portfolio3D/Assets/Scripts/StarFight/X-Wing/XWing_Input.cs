@@ -9,11 +9,17 @@ public class XWing_Input : MonoBehaviour
     public float v;
     //public float h;
 
+    public bool isBattle;
+
+    Animator animator;
+
     private void Start() => StartFunc();
 
     private void StartFunc()
     {
-         x_State = GetComponent<XWing_State_Ctrl>();
+        x_State = GetComponent<XWing_State_Ctrl>();
+        animator = GetComponentInChildren<Animator>();
+        isBattle = false;
     }
 
     private void Update() => UpdateFunc();
@@ -32,30 +38,19 @@ public class XWing_Input : MonoBehaviour
             x_State.X_State = XWingState.Fly;
         }
 
-        if(v > 0)
+        if(Input.GetKeyDown(KeyCode.C))
         {
-            Debug.Log("¾ÕÀ¸·Î");
-        }
-        else if(v < 0)
-        {
-            Debug.Log("µÚ·Î");
-        }
-        else
-        {
-            Debug.Log("¾ÕµÚ ¸ØÃã");
-        }
+            if(isBattle)
+            {
+                isBattle = false;
+                animator.SetBool("isBattle", false);
+            }
+            else
+            {
+                isBattle = true;
+                animator.SetBool("isBattle", true);
+            }
 
-        //if(h >0)
-        //{
-        //    Debug.Log("¿À¸¥ÂÊ");
-        //}
-        //else if( h <0)
-        //{
-        //    Debug.Log("¿ÞÂÊ");
-        //}
-        //else
-        //{
-        //    Debug.Log("ÁÂ¿ì ¸ØÃã");
-        //}
+        }
     }
 }
