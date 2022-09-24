@@ -22,6 +22,7 @@ public class XWing_Att : MonoBehaviour
 
     //}
 
+    #region 단발
     public void OneShotFunc()
     {
         if (attNum >= 4)
@@ -37,14 +38,19 @@ public class XWing_Att : MonoBehaviour
 
         attNum++;
     }
+    #endregion
 
+    #region 3연발
     public void SpotShotFunc()
     {
         Debug.Log("2Spot");
     }
+    #endregion
 
+    #region 연사
     public void DrillShotFunc()
     {
         Debug.Log("Drill");
     }
+    #endregion
 }

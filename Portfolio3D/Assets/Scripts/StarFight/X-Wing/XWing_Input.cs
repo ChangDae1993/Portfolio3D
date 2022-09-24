@@ -63,21 +63,18 @@ public class XWing_Input : MonoBehaviour
             x_State.X_State = XWingState.Fly;
         }
 
-        //전투모드 전환
+        #region 전투모드 전환
         if (Input.GetKeyDown(KeyCode.R))
         {
             if (isBattleMode)
             {
                 isBattleMode = false;
                 animator.SetBool("isBattle", false);
-
-
             }
             else
             {
                 isBattleMode = true;
                 animator.SetBool("isBattle", true);
-
             }
         }
 
@@ -91,9 +88,9 @@ public class XWing_Input : MonoBehaviour
             //Aim다시 60 -> 20으로 옮기기
             Aim.transform.localPosition = Vector3.Lerp(aimTargetPos, aimOriginPos, Time.fixedDeltaTime * 50.0f);
         }
-        //전투모드 전환
+        #endregion
 
-        //전투 지속 시간 (15초 동안 피격이나 발사가 없으면 비전투 타임으로 돌아감)
+        #region 전투 지속 시간 (15초 동안 피격이나 발사가 없으면 비전투 타임으로 돌아감)
         if (battleTime)
         {
             x_State.X_State = XWingState.Attack;
@@ -103,9 +100,10 @@ public class XWing_Input : MonoBehaviour
         {
             battleTime = false;
         }
-        //전투 지속 시간
+        #endregion
 
-        //무기 타입 변환
+
+        #region 무기 타입 변환
         if (Input.GetKeyDown(KeyCode.C))
         {
             shotState++;
@@ -115,9 +113,9 @@ public class XWing_Input : MonoBehaviour
             }
             x_State.XW_State = (XWingWeaponState)shotState;
         }
-        //무기 타입 변환
+        #endregion
 
-        //무기 타입별 발사
+        #region 무기 타입별 발사
         if (Input.GetKeyDown(KeyCode.Space))
         {
             battleTime = true;
@@ -139,8 +137,6 @@ public class XWing_Input : MonoBehaviour
                 x_Att.DrillShotFunc();
             }
         }
-        //무기 타입별 발사
-
-
+        #endregion
     }
 }
