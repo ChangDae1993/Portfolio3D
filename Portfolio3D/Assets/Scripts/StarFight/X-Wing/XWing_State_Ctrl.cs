@@ -7,7 +7,6 @@ public enum XWingState
 {
     IdleFly,
     Fly,
-    AttackFly,
     Attack,
     Dash,
     Dodge,
@@ -20,6 +19,7 @@ public enum XWingState
 public enum XWingWeaponState
 {
     oneShot,
+    spotShot,
     drillShot,
     torphido,
 }

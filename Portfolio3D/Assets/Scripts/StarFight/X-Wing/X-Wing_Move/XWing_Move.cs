@@ -9,7 +9,7 @@ public class XWing_Move : MonoBehaviour
     XWing_Rotate X_Rotate;
 
     float moveVelocity = 30.0f;    //평면 초당 이동 속도
-    float idleVelocity = 5.0f;
+    float idleVelocity = 0.0f;
 
     //float runSpeed = 20.0f;
 
@@ -100,36 +100,36 @@ public class XWing_Move : MonoBehaviour
 
         #region 상하 회전
 
-        if (X_Rotate.rv > 0.5f)
-        {
-            isUp = true;
-            isDown = false;
-        }
-        else if (X_Rotate.rv < -0.5f)
-        {
-            isUp = false;
-            isDown = true;
-        }
-        else if (X_Rotate.rv == 0.0f)
-        {
-            isUp = false;
-            isDown = false;
-        }
+        //if (X_Rotate.rv > 0.5f)
+        //{
+        //    isUp = true;
+        //    isDown = false;
+        //}
+        //else if (X_Rotate.rv < -0.5f)
+        //{
+        //    isUp = false;
+        //    isDown = true;
+        //}
+        //else if (X_Rotate.rv == 0.0f)
+        //{
+        //    isUp = false;
+        //    isDown = false;
+        //}
 
-        if (isUp)
-        {
-            X_Body.localRotation = Quaternion.Euler(0.0f, 0, 0.0f);
-        }
+        //if (isUp)
+        //{
+        //    X_Body.localRotation = Quaternion.Euler(0.0f, 0, 0.0f);
+        //}
 
-        if (isDown)
-        {
-            X_Body.localRotation = Quaternion.Euler(20.0f, 0, 0.0f);
-        }
+        //if (isDown)
+        //{
+        //    X_Body.localRotation = Quaternion.Euler(20.0f, 0, 0.0f);
+        //}
 
-        if (!isUp && !isDown)
-        {
-            X_Body.localRotation = Quaternion.Euler(10.0f, 0, 0.0f);
-        }
+        //if (!isUp && !isDown)
+        //{
+        //    X_Body.localRotation = Quaternion.Euler(10.0f, 0, 0.0f);
+        //}
         #endregion
 
 
