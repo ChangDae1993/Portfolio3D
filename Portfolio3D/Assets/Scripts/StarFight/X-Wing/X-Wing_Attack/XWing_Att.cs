@@ -9,21 +9,17 @@ public class XWing_Att : MonoBehaviour
 
     public Transform TorphidoShotPos;
 
-    XWing_State_Ctrl x_State;
-    XWing_Input x_Input;
-
     // Start is called before the first frame update
     void Start()
     {
-        x_State = GetComponent<XWing_State_Ctrl>();
-        x_Input = GetComponent<XWing_Input>();
+
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    //void Update()
+    //{
 
-    }
+    //}
 
     public void OneShotFunc()
     {
@@ -33,6 +29,12 @@ public class XWing_Att : MonoBehaviour
         }
 
         Debug.Log(ShotPos[attNum]);
+
+        Instantiate(Resources.Load("X-Wing/XWing_Laser"), ShotPos[attNum].position, Quaternion.identity);
+        //饭捞历 积己 备埃
+
+        //饭捞历 积己 备埃
+
         attNum++;
     }
 

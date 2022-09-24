@@ -13,7 +13,6 @@ public class ShotBehavior : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		transform.position += transform.forward * Time.deltaTime * 10.0f;
-	
+		transform.Translate(Vector3.forward * 5.0f);
 	}
 }
