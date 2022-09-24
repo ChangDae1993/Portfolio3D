@@ -6,8 +6,9 @@ public class XWing_Att : MonoBehaviour
 {
     public Transform[] ShotPos;
     int attNum = 0;
-
     public Transform TorphidoShotPos;
+
+    public GameObject Laser;
 
     // Start is called before the first frame update
     void Start()
@@ -30,9 +31,8 @@ public class XWing_Att : MonoBehaviour
 
         Debug.Log(ShotPos[attNum]);
 
-        Instantiate(Resources.Load("X-Wing/XWing_Laser"), ShotPos[attNum].position, Quaternion.identity);
         //饭捞历 积己 备埃
-
+        Instantiate(Laser, ShotPos[attNum].position, ShotPos[attNum].rotation);
         //饭捞历 积己 备埃
 
         attNum++;

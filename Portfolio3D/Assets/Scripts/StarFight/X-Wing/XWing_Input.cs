@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.UI;
 
 public class XWing_Input : MonoBehaviour
 {
     XWing_State_Ctrl x_State;
     XWing_Att x_Att;
+
+    public Image Aim;
 
 
     public float v;
@@ -25,6 +28,10 @@ public class XWing_Input : MonoBehaviour
 
     Animator animator;
 
+    //전투 모드 전환시 AIm위치 변경하기
+    Vector3 aimOriginPos;
+    Vector3 aimTargetPos;
+
 
     private void Start() => StartFunc();
 
@@ -36,6 +43,8 @@ public class XWing_Input : MonoBehaviour
         isBattleMode = false;
         battleTime = false;
         shotState = 0;
+        aimOriginPos = new Vector3(6, 20, -400);
+        aimTargetPos = new Vector3(6, 60, -400);
     }
 
     private void Update() => UpdateFunc();
@@ -61,12 +70,26 @@ public class XWing_Input : MonoBehaviour
             {
                 isBattleMode = false;
                 animator.SetBool("isBattle", false);
+
+
             }
             else
             {
                 isBattleMode = true;
                 animator.SetBool("isBattle", true);
+
             }
+        }
+
+        if(isBattleMode)
+        {
+            //Aim옮기기 20 -> 60
+            Aim.transform.localPosition = Vector3.Lerp(aimOriginPos, aimTargetPos, Time.fixedDeltaTime * 50.0f);
+        }
+        else
+        {
+            //Aim다시 60 -> 20으로 옮기기
+            Aim.transform.localPosition = Vector3.Lerp(aimTargetPos, aimOriginPos, Time.fixedDeltaTime * 50.0f);
         }
         //전투모드 전환
 
