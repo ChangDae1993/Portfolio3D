@@ -87,7 +87,7 @@ public class XWing_Att : MonoBehaviour
             cam.fieldOfView = 65;
         }
         //TimeScale 0.5로 바꾸기
-        Time.timeScale = 0.5f;
+        Time.timeScale = 0.2f;
 
         //캔버스 색 푸른색으로 살짝 바꾸기
         skill3Alpha += Time.deltaTime * 10.0f;
@@ -95,7 +95,7 @@ public class XWing_Att : MonoBehaviour
 
         //게이지 표출 + 깎기
         skill3Show.gameObject.SetActive(true);
-        skill3Gage.fillAmount -= Time.deltaTime * 0.2f;
+        skill3Gage.fillAmount -= Time.deltaTime * 0.3f;
 
     }
 
