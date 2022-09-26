@@ -11,8 +11,6 @@ public enum XWingState
     Dash,
     Dodge,
     Repair,
-    Skill1,
-    Skill2,
     Die,
 }
 
@@ -24,11 +22,20 @@ public enum XWingWeaponState
     torphido,
 }
 
+public enum XWingSkillState
+{
+    noSkill,
+    Skill1,
+    Skill2,
+    Skill3,
+}
+
 public class XWing_State_Ctrl : MonoBehaviour
 {
 
     public XWingState X_State;
     public XWingWeaponState XW_State;
+    public XWingSkillState XS_State;
 
     private void Start() => StartFunc();
 
@@ -36,5 +43,6 @@ public class XWing_State_Ctrl : MonoBehaviour
     {
         X_State = XWingState.IdleFly;
         XW_State = XWingWeaponState.oneShot;
+        XS_State = XWingSkillState.noSkill;
     }
 }

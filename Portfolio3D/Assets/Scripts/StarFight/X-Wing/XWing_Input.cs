@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.UI;
@@ -8,29 +9,36 @@ public class XWing_Input : MonoBehaviour
 {
     XWing_State_Ctrl x_State;
     XWing_Att x_Att;
+    Animator animator;
 
     public Image Aim;
-
 
     public float v;
     //public float h;
 
-
     //무기 상태 변경하는 변수
     public int shotState;
 
+
+    //전투 모드 전환시 AIm위치 변경하기
+    Vector3 aimOriginPos;
+    Vector3 aimTargetPos;
 
     //전투 돌입 타이머
     public bool isBattleMode;
     public bool battleTime;
     public float battleTimer;
 
+    //스킬 bool값
+    public bool isSkill1;
+    public bool isSKill2;
+    public bool isSkill3;
 
-    Animator animator;
+    //스킬 타이머
+    public float skill1Cool;
+    public float skill2Cool;
+    public float skill3Cool;
 
-    //전투 모드 전환시 AIm위치 변경하기
-    Vector3 aimOriginPos;
-    Vector3 aimTargetPos;
 
 
     private void Start() => StartFunc();
@@ -45,6 +53,16 @@ public class XWing_Input : MonoBehaviour
         shotState = 0;
         aimOriginPos = new Vector3(6, 20, -400);
         aimTargetPos = new Vector3(6, 60, -400);
+
+
+
+        isSkill1 = false;
+        isSKill2 = false;
+        isSkill3 = false;
+
+        skill1Cool = 3.0f;
+        skill2Cool = 3.0f;
+        skill3Cool = 3.0f;
     }
 
     private void Update() => UpdateFunc();
@@ -64,7 +82,7 @@ public class XWing_Input : MonoBehaviour
         }
 
         #region 전투모드 전환
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.G))
         {
             if (isBattleMode)
             {
@@ -115,6 +133,7 @@ public class XWing_Input : MonoBehaviour
         }
         #endregion
 
+
         #region 무기 타입별 발사
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -136,6 +155,61 @@ public class XWing_Input : MonoBehaviour
             {
                 x_Att.DrillShotFunc();
             }
+        }
+        #endregion
+
+        #region 스킬 부분
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            isSkill1 = true;
+        }
+        if(isSkill1)
+        {
+            x_Att.Skill1();
+            skill1Cool -= Time.deltaTime;
+
+            if(skill1Cool<= 0.0f)
+            {
+                isSkill1 = false;
+                skill1Cool = 3.0f;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            isSKill2 = true;
+        }
+        if(isSKill2)
+        {
+            x_Att.Skill2();
+            skill2Cool -= Time.deltaTime;
+
+            if(skill2Cool <= 0.0f)
+            {
+                isSKill2 = false;
+                skill2Cool = 3.0f;
+            }
+        }
+
+        if (Input.GetKey(KeyCode.R))
+        {
+            isSkill3 = true;
+
+        }
+        else if (Input.GetKeyUp(KeyCode.R))
+        {
+            isSkill3 = false;
+            x_Att.Skill3Fire();
+        }
+
+        if (isSkill3)
+        {
+            x_Att.Skill3();
+        }
+        else
+        {
+
         }
         #endregion
     }
