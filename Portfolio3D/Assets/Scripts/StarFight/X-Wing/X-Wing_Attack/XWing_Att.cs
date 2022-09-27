@@ -81,10 +81,10 @@ public class XWing_Att : MonoBehaviour
     {
         Debug.Log("SKill3");
         //카메라 사이즈 80->65까지 낮추기
-        cam.fieldOfView -= Time.deltaTime*10.0f;
-        if(cam.fieldOfView <= 65)
+        cam.fieldOfView += Time.deltaTime * 50.0f;
+        if(cam.fieldOfView >120)
         {
-            cam.fieldOfView = 65;
+            cam.fieldOfView = 120;
         }
         //TimeScale 0.5로 바꾸기
         Time.timeScale = 0.2f;

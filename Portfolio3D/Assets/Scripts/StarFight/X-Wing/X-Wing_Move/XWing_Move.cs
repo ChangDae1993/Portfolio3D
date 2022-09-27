@@ -25,7 +25,7 @@ public class XWing_Move : MonoBehaviour
     [SerializeField] private bool isUp;
     [SerializeField] private bool isDown;
 
-    ////회전시 위치 관련 변수
+    //회전시 위치 관련 변수
     //Vector3 originPos;
     //Vector3 rightTurnPos;
 
@@ -38,12 +38,15 @@ public class XWing_Move : MonoBehaviour
         X_Rotate = GetComponent<XWing_Rotate>();
         X_Body = transform.GetChild(0).transform;
 
+        //originPos = new Vector3(0, -4.5f, 10.5f);
+        //rightTurnPos = new Vector3(-7.0f, -4.5f, 10.5f);
     }
 
     private void Update() => UpdateFunc();
 
     private void UpdateFunc()
     {
+
         if(X_Input.v > 0.0f)
         {
             x_State.X_State = XWingState.Fly;
@@ -80,7 +83,7 @@ public class XWing_Move : MonoBehaviour
         if (isRight)
         {
             X_Body.localRotation = Quaternion.Euler(10.0f, 0, -30.0f);
-            //X_Body.localPosition = Vector3.Lerp(originPos, rightTurnPos, Time.deltaTime * 150.0f);
+            //X_Body.localPosition = Vector3.Lerp(originPos, rightTurnPos, 0.1f);
             X_Body.localPosition = new Vector3(-7.0f, -4.5f, 10.5f);
         }
 
