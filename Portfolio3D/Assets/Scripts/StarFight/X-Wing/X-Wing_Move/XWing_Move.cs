@@ -26,8 +26,8 @@ public class XWing_Move : MonoBehaviour
     [SerializeField] private bool isDown;
 
     //회전시 위치 관련 변수
-    //Vector3 originPos;
-    //Vector3 rightTurnPos;
+    Vector3 originPos;
+    Vector3 rightTurnPos;
 
     private void Start() => StartFunc();
 
@@ -38,8 +38,8 @@ public class XWing_Move : MonoBehaviour
         X_Rotate = GetComponent<XWing_Rotate>();
         X_Body = transform.GetChild(0).transform;
 
-        //originPos = new Vector3(0, -4.5f, 10.5f);
-        //rightTurnPos = new Vector3(-7.0f, -4.5f, 10.5f);
+        originPos = new Vector3(0, -4.5f, 10.5f);
+        rightTurnPos = new Vector3(-70.0f, -4.5f, 10.5f);
     }
 
     private void Update() => UpdateFunc();
@@ -63,43 +63,7 @@ public class XWing_Move : MonoBehaviour
         }
 
 
-        #region 좌우 이동
-        if (X_Rotate.rh > 0.5f)
-        {
-            isRight = true;
-            isLeft = false;
-        }
-        else if (X_Rotate.rh < -0.5f)
-        {
-            isRight = false;
-            isLeft = true;
-        }
-        else if (X_Rotate.rh == 0.0f)
-        {
-            isRight = false;
-            isLeft = false;
-        }
 
-        if (isRight)
-        {
-            X_Body.localRotation = Quaternion.Euler(10.0f, 0, -30.0f);
-            //X_Body.localPosition = Vector3.Lerp(originPos, rightTurnPos, 0.1f);
-            X_Body.localPosition = new Vector3(-7.0f, -4.5f, 10.5f);
-        }
-
-        if (isLeft)
-        {
-            X_Body.localRotation = Quaternion.Euler(10.0f, 0, 30.0f);
-            //X_Body.localPosition = Vector3.Lerp(originPos, rightTurnPos, Time.deltaTime * 150.0f);
-            X_Body.localPosition = new Vector3(7.0f, -4.5f, 10.5f);
-        }
-
-        if (!isRight && !isLeft)
-        {
-            X_Body.localRotation = Quaternion.Euler(10.0f, 0, 0);
-            X_Body.localPosition = new Vector3(0.0f, -4.5f, 10.5f);
-        }
-        #endregion
 
         #region 상하 회전
 
@@ -138,5 +102,57 @@ public class XWing_Move : MonoBehaviour
 
         //X_Body.localPosition = new Vector3(X_Rotate.rh * -7.0f, -4.5f, 10.5f);
         //X_Body.localRotation = Quaternion.Euler(X_Rotate.rv * 10.0f, 0.0f, -X_Rotate.rh * 30.0f);
+    }
+
+    private void FixedUpdate()
+    {
+        #region 좌우 이동
+        if (X_Rotate.rh > 0.5f)
+        {
+            isRight = true;
+            isLeft = false;
+        }
+        else if (X_Rotate.rh < -0.5f)
+        {
+            isRight = false;
+            isLeft = true;
+        }
+        else if (X_Rotate.rh == 0.0f)
+        {
+            isRight = false;
+            isLeft = false;
+        }
+
+        if (isRight)
+        {
+            X_Body.localRotation = Quaternion.Euler(10.0f, 0, -30.0f);
+
+            //X_Body.localPosition = new Vector3(-7.0f, -4.5f, 10.5f);
+            StartCoroutine(RightTurnCo());
+        }
+        IEnumerator RightTurnCo()
+        {
+            while (isRight)
+            {
+                X_Body.localPosition = Vector3.Lerp(originPos, rightTurnPos, Time.fixedDeltaTime * 2.0f);
+                Debug.Log("Right");
+                yield return new WaitForSeconds(5.0f);
+            }
+        }
+
+
+        if (isLeft)
+        {
+            X_Body.localRotation = Quaternion.Euler(10.0f, 0, 30.0f);
+            //X_Body.localPosition = Vector3.Lerp(originPos, rightTurnPos, Time.deltaTime * 150.0f);
+            X_Body.localPosition = new Vector3(7.0f, -4.5f, 10.5f);
+        }
+
+        if (!isRight && !isLeft)
+        {
+            X_Body.localRotation = Quaternion.Euler(10.0f, 0, 0);
+            X_Body.localPosition = new Vector3(0.0f, -4.5f, 10.5f);
+        }
+        #endregion
     }
 }
