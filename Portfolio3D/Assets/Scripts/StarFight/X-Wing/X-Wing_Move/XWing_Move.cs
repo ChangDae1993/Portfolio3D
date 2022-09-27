@@ -9,7 +9,7 @@ public class XWing_Move : MonoBehaviour
     XWing_Rotate X_Rotate;
 
     float moveVelocity = 30.0f;    //평면 초당 이동 속도
-    float idleVelocity = 0.0f;
+    float idleVelocity = 3.0f;
 
     //float runSpeed = 20.0f;
 
@@ -28,6 +28,7 @@ public class XWing_Move : MonoBehaviour
     //회전시 위치 관련 변수
     Vector3 originPos;
     Vector3 rightTurnPos;
+    Vector3 leftTurnPos;
 
     private void Start() => StartFunc();
 
@@ -38,8 +39,8 @@ public class XWing_Move : MonoBehaviour
         X_Rotate = GetComponent<XWing_Rotate>();
         X_Body = transform.GetChild(0).transform;
 
-        originPos = new Vector3(0, -4.5f, 10.5f);
-        rightTurnPos = new Vector3(-70.0f, -4.5f, 10.5f);
+        rightTurnPos = new Vector3(-7.0f, -4.5f, 10.5f);
+        leftTurnPos = new Vector3(7.0f, -4.5f, 10.5f);
     }
 
     private void Update() => UpdateFunc();
@@ -126,16 +127,14 @@ public class XWing_Move : MonoBehaviour
         if (isRight)
         {
             X_Body.localRotation = Quaternion.Euler(10.0f, 0, -30.0f);
-
-            //X_Body.localPosition = new Vector3(-7.0f, -4.5f, 10.5f);
             StartCoroutine(RightTurnCo());
         }
         IEnumerator RightTurnCo()
         {
             while (isRight)
             {
-                X_Body.localPosition = Vector3.Lerp(originPos, rightTurnPos, Time.fixedDeltaTime * 2.0f);
-                Debug.Log("Right");
+                X_Body.localPosition = Vector3.Lerp(X_Body.localPosition, rightTurnPos, Time.fixedDeltaTime * 0.5f);
+                //Debug.Log(X_Body.localPosition.x);
                 yield return new WaitForSeconds(5.0f);
             }
         }
@@ -144,8 +143,16 @@ public class XWing_Move : MonoBehaviour
         if (isLeft)
         {
             X_Body.localRotation = Quaternion.Euler(10.0f, 0, 30.0f);
-            //X_Body.localPosition = Vector3.Lerp(originPos, rightTurnPos, Time.deltaTime * 150.0f);
-            X_Body.localPosition = new Vector3(7.0f, -4.5f, 10.5f);
+            StartCoroutine(LeftTurnCo());
+        }
+        IEnumerator LeftTurnCo()
+        {
+            while (isLeft)
+            {
+                X_Body.localPosition = Vector3.Lerp(X_Body.localPosition, leftTurnPos, Time.fixedDeltaTime * 0.5f);
+                //Debug.Log(X_Body.localPosition.x);
+                yield return new WaitForSeconds(5.0f);
+            }
         }
 
         if (!isRight && !isLeft)
