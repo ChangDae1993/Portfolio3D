@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class XWing_Att : MonoBehaviour
 {
     public Transform[] ShotPos;
-    int attNum = 0;
     public Transform TorphidoShotPos;
 
     public GameObject Laser;
@@ -15,6 +14,15 @@ public class XWing_Att : MonoBehaviour
     public float skill3Alpha;
 
     public GameObject skill3Show;
+
+    [Header("---1Shot---")]
+    [SerializeField] private int attNum = 0;
+
+    [Header("---3Shot---")]
+    //3연발 관련
+    [SerializeField] private int att3Num = 0;
+    [SerializeField] private bool upShot;
+    [SerializeField] private float shotDelay;
 
     //스킬 게이지
     public Image skill3Gage;
@@ -25,6 +33,8 @@ public class XWing_Att : MonoBehaviour
         cam = GetComponent<Camera>();
         skill3Alpha = 0.0f;
         skill3Show.gameObject.SetActive(false);
+        upShot = true;
+        shotDelay = 0.2f;
     }
 
     // Update is called once per frame
@@ -41,7 +51,7 @@ public class XWing_Att : MonoBehaviour
             attNum = 0;
         }
 
-        Debug.Log(ShotPos[attNum]);
+        //Debug.Log(ShotPos[attNum]);
 
         //레이저 생성 구간
         Instantiate(Laser, ShotPos[attNum].position, ShotPos[attNum].rotation);
@@ -54,6 +64,20 @@ public class XWing_Att : MonoBehaviour
     #region 3연발
     public void SpotShotFunc()
     {
+        if(upShot)
+        {
+            Instantiate(Laser, ShotPos[0].position, ShotPos[0].rotation);
+            Instantiate(Laser, ShotPos[1].position, ShotPos[1].rotation);
+            upShot = false;    
+        }
+
+        if(!upShot)
+        {
+            Instantiate(Laser, ShotPos[2].position, ShotPos[2].rotation);
+            Instantiate(Laser, ShotPos[3].position, ShotPos[3].rotation);
+            upShot = true;
+        }
+
         Debug.Log("2Spot");
     }
     #endregion

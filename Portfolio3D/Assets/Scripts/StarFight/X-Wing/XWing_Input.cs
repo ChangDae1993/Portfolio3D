@@ -19,6 +19,10 @@ public class XWing_Input : MonoBehaviour
     //무기 상태 변경하는 변수
     public int shotState;
 
+    //점사 타이머
+    [SerializeField] private bool is3Shot;
+    [SerializeField] private float shotTimer;
+
 
     //전투 모드 전환시 AIm위치 변경하기
     Vector3 aimOriginPos;
@@ -63,6 +67,9 @@ public class XWing_Input : MonoBehaviour
         skill1Cool = 3.0f;
         skill2Cool = 3.0f;
         skill3Cool = 3.0f;
+
+        is3Shot = false;
+        shotTimer = 1.0f;
     }
 
     private void Update() => UpdateFunc();
@@ -135,19 +142,37 @@ public class XWing_Input : MonoBehaviour
 
 
         #region 무기 타입별 발사
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             battleTime = true;
             battleTimer = 15.0f;
-            if(x_State.XW_State == XWingWeaponState.oneShot)
+            if (x_State.XW_State == XWingWeaponState.oneShot)
             {
+                //단발
                 x_Att.OneShotFunc();
             }
             else if(x_State.XW_State == XWingWeaponState.spotShot)
             {
-                x_Att.SpotShotFunc();
+                if (!is3Shot)
+                {
+                    x_Att.SpotShotFunc();
+                    shotTimer = 1.0f;
+                }
             }
         }
+
+        //3연발
+        if(shotTimer > 0)
+        {
+            shotTimer -= Time.deltaTime;
+            is3Shot = true;
+        }
+        else
+        {
+            is3Shot = false;
+        }
+
 
         if(x_State.XW_State == XWingWeaponState.drillShot)
         {
