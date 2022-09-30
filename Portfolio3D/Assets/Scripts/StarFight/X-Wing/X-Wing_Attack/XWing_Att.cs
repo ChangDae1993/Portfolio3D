@@ -109,7 +109,7 @@ public class XWing_Att : MonoBehaviour
     }
     #endregion
 
-    #region 연사
+    #region 버스트샷
     public void DrillShotFunc()
     {
         Debug.Log("Drill");
