@@ -66,19 +66,46 @@ public class XWing_Att : MonoBehaviour
     {
         if(upShot)
         {
+            StartCoroutine(Upshot3AttCo());
+        }
+        else
+        {
+            StartCoroutine(Downshot3AttCo());
+        }
+    }
+
+    IEnumerator Upshot3AttCo()
+    {
+        int a = 0;
+        while(a < 3)
+        {
             Instantiate(Laser, ShotPos[0].position, ShotPos[0].rotation);
             Instantiate(Laser, ShotPos[1].position, ShotPos[1].rotation);
-            upShot = false;    
+            yield return new WaitForSeconds(0.1f);
+            a++;
+            if (a >= 3)
+            {
+                upShot = false;
+                yield break;
+            }
         }
+    }
 
-        if(!upShot)
+    IEnumerator Downshot3AttCo()
+    {
+        int a = 0;
+        while (a < 3)
         {
             Instantiate(Laser, ShotPos[2].position, ShotPos[2].rotation);
             Instantiate(Laser, ShotPos[3].position, ShotPos[3].rotation);
-            upShot = true;
+            yield return new WaitForSeconds(0.1f);
+            a++;
+            if (a >= 3)
+            {
+                upShot = true;
+                yield break;
+            }
         }
-
-        Debug.Log("2Spot");
     }
     #endregion
 

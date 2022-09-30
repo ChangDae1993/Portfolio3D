@@ -142,7 +142,7 @@ public class XWing_Input : MonoBehaviour
 
 
         #region 무기 타입별 발사
-
+        #region 단발
         if (Input.GetKeyDown(KeyCode.Space))
         {
             battleTime = true;
@@ -161,9 +161,9 @@ public class XWing_Input : MonoBehaviour
                 }
             }
         }
-
-        //3연발
-        if(shotTimer > 0)
+        #endregion
+        #region 3점사
+        if (shotTimer > 0)
         {
             shotTimer -= Time.deltaTime;
             is3Shot = true;
@@ -172,9 +172,9 @@ public class XWing_Input : MonoBehaviour
         {
             is3Shot = false;
         }
-
-
-        if(x_State.XW_State == XWingWeaponState.drillShot)
+        #endregion
+        #region 연사
+        if (x_State.XW_State == XWingWeaponState.drillShot)
         {
             if(Input.GetKey(KeyCode.Space))
             {
@@ -182,9 +182,11 @@ public class XWing_Input : MonoBehaviour
             }
         }
         #endregion
+        #endregion
 
         #region 스킬 부분
 
+        #region Q스킬
         if (Input.GetKeyDown(KeyCode.Q))
         {
             isSkill1 = true;
@@ -200,7 +202,9 @@ public class XWing_Input : MonoBehaviour
                 skill1Cool = 3.0f;
             }
         }
+        #endregion
 
+        #region E스킬
         if (Input.GetKeyDown(KeyCode.E))
         {
             isSKill2 = true;
@@ -216,7 +220,9 @@ public class XWing_Input : MonoBehaviour
                 skill2Cool = 3.0f;
             }
         }
+        #endregion
 
+        #region R스킬(궁)
         if (Input.GetKey(KeyCode.R))
         {
             isSkill3 = true;
@@ -227,7 +233,6 @@ public class XWing_Input : MonoBehaviour
             isSkill3 = false;
             x_Att.Skill3Fire();
         }
-
         if (isSkill3)
         {
             x_Att.Skill3();
@@ -236,6 +241,8 @@ public class XWing_Input : MonoBehaviour
         {
 
         }
+        #endregion
+
         #endregion
     }
 }
