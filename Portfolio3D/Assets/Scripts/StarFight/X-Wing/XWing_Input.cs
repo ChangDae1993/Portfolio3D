@@ -19,15 +19,22 @@ public class XWing_Input : MonoBehaviour
     //무기 상태 변경하는 변수
     public int shotState;
 
+    [Header("---SpotShot")]
     //점사 타이머
     [SerializeField] private bool is3Shot;
     [SerializeField] private float shotTimer;
+
+    [Header("---BurstShot---")]
+    //버스트 타이머
+    [SerializeField] private bool isBurstShot;
+    [SerializeField] private float shotBurstCoolTimer;  //연사 쿨타임
 
 
     //전투 모드 전환시 AIm위치 변경하기
     Vector3 aimOriginPos;
     Vector3 aimTargetPos;
 
+    [Header("---Battle Timer---")]
     //전투 돌입 타이머
     public bool isBattleMode;
     public bool battleTime;
@@ -70,6 +77,9 @@ public class XWing_Input : MonoBehaviour
 
         is3Shot = false;
         shotTimer = 1.0f;
+
+        isBurstShot = false;
+        shotBurstCoolTimer = 0.0f;
     }
 
     private void Update() => UpdateFunc();
@@ -142,6 +152,7 @@ public class XWing_Input : MonoBehaviour
 
 
         #region 무기 타입별 발사
+
         #region 단발
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -162,6 +173,7 @@ public class XWing_Input : MonoBehaviour
             }
         }
         #endregion
+
         #region 3점사
         if (shotTimer > 0)
         {
@@ -173,15 +185,32 @@ public class XWing_Input : MonoBehaviour
             is3Shot = false;
         }
         #endregion
+
         #region 연사
         if (x_State.XW_State == XWingWeaponState.drillShot)
         {
-            if(Input.GetKey(KeyCode.Space))
+            if(Input.GetKeyDown(KeyCode.Space))
             {
-                x_Att.DrillShotFunc();
+                if(!isBurstShot)
+                {
+                    x_Att.DrillShotFunc();
+                    shotBurstCoolTimer = 10.0f;
+                }
+
             }
         }
+
+        if(shotBurstCoolTimer > 0)
+        {
+            shotBurstCoolTimer -= Time.deltaTime;
+            isBurstShot = true;
+        }
+        else
+        {
+            isBurstShot = false;
+        }
         #endregion
+
         #endregion
 
         #region 스킬 부분

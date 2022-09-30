@@ -1863,6 +1863,8 @@ MonoBehaviour:
   Aim: {fileID: 408675056}
   v: 0
   shotState: 0
+  is3Shot: 0
+  shotTimer: 0
   isBattleMode: 0
   battleTime: 0
   battleTimer: 0
@@ -1927,6 +1929,9 @@ MonoBehaviour:
   skill3BG: {fileID: 1424804204}
   skill3Alpha: 0
   skill3Show: {fileID: 1396478370}
+  attNum: 0
+  att3Num: 0
+  upShot: 0
   skill3Gage: {fileID: 827202196}
 --- !u!1 &1955718878
 GameObject:

@@ -22,7 +22,6 @@ public class XWing_Att : MonoBehaviour
     //3연발 관련
     [SerializeField] private int att3Num = 0;
     [SerializeField] private bool upShot;
-    [SerializeField] private float shotDelay;
 
     //스킬 게이지
     public Image skill3Gage;
@@ -34,14 +33,7 @@ public class XWing_Att : MonoBehaviour
         skill3Alpha = 0.0f;
         skill3Show.gameObject.SetActive(false);
         upShot = true;
-        shotDelay = 0.2f;
     }
-
-    // Update is called once per frame
-    //void Update()
-    //{
-
-    //}
 
     #region 단발
     public void OneShotFunc()
@@ -50,9 +42,6 @@ public class XWing_Att : MonoBehaviour
         {
             attNum = 0;
         }
-
-        //Debug.Log(ShotPos[attNum]);
-
         //레이저 생성 구간
         Instantiate(Laser, ShotPos[attNum].position, ShotPos[attNum].rotation);
         //레이저 생성 구간
@@ -112,22 +101,45 @@ public class XWing_Att : MonoBehaviour
     #region 버스트샷
     public void DrillShotFunc()
     {
+        StartCoroutine(BurstShotCo());
         Debug.Log("Drill");
+    }
+
+    IEnumerator BurstShotCo()
+    {
+        int a = 0;
+        while (a < 20)
+        {
+            Instantiate(Laser, ShotPos[0].position, ShotPos[0].rotation);
+            Instantiate(Laser, ShotPos[1].position, ShotPos[1].rotation);
+            Instantiate(Laser, ShotPos[2].position, ShotPos[2].rotation);
+            Instantiate(Laser, ShotPos[3].position, ShotPos[3].rotation);
+            yield return new WaitForSeconds(0.1f);
+            a++;
+            if (a >= 20)
+                yield break;
+        }
     }
     #endregion
 
 
     #region 스킬 구현 부분
+
+    #region Q스킬
     public void Skill1()
     {
         Debug.Log("skill1");
     }
+    #endregion
 
+    #region E스킬
     public void Skill2()
     {
         Debug.Log("Skill2");
     }
+    #endregion
 
+    #region R스킬
     public void Skill3()
     {
         Debug.Log("SKill3");
@@ -169,5 +181,7 @@ public class XWing_Att : MonoBehaviour
 
         
     }
+    #endregion
+
     #endregion
 }
