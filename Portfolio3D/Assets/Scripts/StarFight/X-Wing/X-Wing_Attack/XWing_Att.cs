@@ -23,7 +23,10 @@ public class XWing_Att : MonoBehaviour
     [SerializeField] private int att3Num = 0;
     [SerializeField] private bool upShot;
 
-    //스킬 게이지
+    [Header("---BurstShot---")]
+    [SerializeField] private int a = 0;
+
+    //R스킬 게이지
     public Image skill3Gage;
 
     // Start is called before the first frame update
@@ -79,7 +82,6 @@ public class XWing_Att : MonoBehaviour
             }
         }
     }
-
     IEnumerator Downshot3AttCo()
     {
         int a = 0;
@@ -102,12 +104,11 @@ public class XWing_Att : MonoBehaviour
     public void DrillShotFunc()
     {
         StartCoroutine(BurstShotCo());
-        Debug.Log("Drill");
     }
 
     IEnumerator BurstShotCo()
     {
-        int a = 0;
+
         while (a < 20)
         {
             Instantiate(Laser, ShotPos[0].position, ShotPos[0].rotation);
