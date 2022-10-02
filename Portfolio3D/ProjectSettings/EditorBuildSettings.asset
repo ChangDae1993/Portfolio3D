@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StarFight/2.LobbyScene.unity
     guid: 57452c8f584a6fd42ac7b636dfccdcc4
+  - enabled: 1
+    path: Assets/Scenes/StarFight/StarFight_Tutorial.unity
+    guid: aab72cf40f48f26449db0b39ce237292
   m_configObjects: {}

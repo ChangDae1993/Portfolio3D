@@ -39,6 +39,7 @@ public class XWing_Move : MonoBehaviour
         X_Rotate = GetComponent<XWing_Rotate>();
         X_Body = transform.GetChild(0).transform;
 
+        originPos = new Vector3(0.0f, -4.5f, 10.5f);
         rightTurnPos = new Vector3(-7.0f, -4.5f, 10.5f);
         leftTurnPos = new Vector3(7.0f, -4.5f, 10.5f);
     }
@@ -139,7 +140,6 @@ public class XWing_Move : MonoBehaviour
             }
         }
 
-
         if (isLeft)
         {
             X_Body.localRotation = Quaternion.Euler(10.0f, 0, 30.0f);
@@ -154,11 +154,18 @@ public class XWing_Move : MonoBehaviour
                 yield return new WaitForSeconds(5.0f);
             }
         }
+        #endregion
 
+        #region 제자리 돌아오기
         if (!isRight && !isLeft)
         {
             X_Body.localRotation = Quaternion.Euler(10.0f, 0, 0);
-            X_Body.localPosition = new Vector3(0.0f, -4.5f, 10.5f);
+            StartCoroutine(returnCo());
+        }
+        IEnumerator returnCo()
+        {
+            X_Body.localPosition = Vector3.Lerp(X_Body.localPosition, originPos, Time.fixedDeltaTime * 5.0f);
+            yield return new WaitForSeconds(0.5f);
         }
         #endregion
     }
