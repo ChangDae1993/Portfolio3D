@@ -109,12 +109,12 @@ public class XWing_Move : MonoBehaviour
     private void FixedUpdate()
     {
         #region ÁÂ¿ì ÀÌµ¿
-        if (X_Rotate.rh > 0.5f)
+        if (X_Rotate.rh > 0.8f)
         {
             isRight = true;
             isLeft = false;
         }
-        else if (X_Rotate.rh < -0.5f)
+        else if (X_Rotate.rh < -0.8f)
         {
             isRight = false;
             isLeft = true;
