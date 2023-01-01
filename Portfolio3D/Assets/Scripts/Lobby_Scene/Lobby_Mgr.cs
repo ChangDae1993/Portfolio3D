@@ -8,6 +8,8 @@ public class Lobby_Mgr : MonoBehaviour
 {
 
     public Button Play_Btn;
+    public Button Shop_Btn;
+    public Button Setting_Btn;
 
     private void Start() => StartFunc();
 
@@ -15,6 +17,12 @@ public class Lobby_Mgr : MonoBehaviour
     {
         if (Play_Btn != null)
             Play_Btn.onClick.AddListener(PlayBtnFunc);
+
+        if (Shop_Btn != null)
+            Shop_Btn.onClick.AddListener(ShopBtnFunc);
+
+        if (Setting_Btn != null)
+            Setting_Btn.onClick.AddListener(SettingBtnFunc);
     }
 
     private void Update() => UpdateFunc();
@@ -27,5 +35,17 @@ public class Lobby_Mgr : MonoBehaviour
     public void PlayBtnFunc()
     {
         SceneManager.LoadScene("StarFight_Tutorial");
+    }
+
+    public void ShopBtnFunc()
+    {
+        //shop Scene 넘어가기
+        Debug.Log("Shop Scene");
+    }
+
+    public void SettingBtnFunc()
+    {
+        //setting Scene 넘어가기
+        Debug.Log("Setting Scene");
     }
 }
