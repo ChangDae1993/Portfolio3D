@@ -108,7 +108,7 @@ public class XWing_Att : MonoBehaviour
 
     IEnumerator BurstShotCo()
     {
-
+        Debug.Log("Test Here");
         while (a < 20)
         {
             Instantiate(Laser, ShotPos[0].position, ShotPos[0].rotation);
@@ -118,7 +118,10 @@ public class XWing_Att : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
             a++;
             if (a >= 20)
+            {
+                a = 0;
                 yield break;
+            }
         }
     }
     #endregion
