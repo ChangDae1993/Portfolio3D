@@ -30,6 +30,11 @@ public class XWing_Move : MonoBehaviour
     Vector3 rightTurnPos;
     Vector3 leftTurnPos;
 
+    //Coroutine Cache
+    Coroutine rightTurn;
+    Coroutine leftTurn;
+    Coroutine resetTurn;
+
     private void Start() => StartFunc();
 
     private void StartFunc()
@@ -128,45 +133,51 @@ public class XWing_Move : MonoBehaviour
         if (isRight)
         {
             X_Body.localRotation = Quaternion.Euler(10.0f, 0, -30.0f);
-            StartCoroutine(RightTurnCo());
+            rightTurn = StartCoroutine(RightTurnCo());
         }
-        IEnumerator RightTurnCo()
-        {
-            while (isRight)
-            {
-                X_Body.localPosition = Vector3.Lerp(X_Body.localPosition, rightTurnPos, Time.fixedDeltaTime * 0.5f);
-                //Debug.Log(X_Body.localPosition.x);
-                yield return new WaitForSeconds(5.0f);
-            }
-        }
+
 
         if (isLeft)
         {
             X_Body.localRotation = Quaternion.Euler(10.0f, 0, 30.0f);
-            StartCoroutine(LeftTurnCo());
+            leftTurn = StartCoroutine(LeftTurnCo());
         }
-        IEnumerator LeftTurnCo()
-        {
-            while (isLeft)
-            {
-                X_Body.localPosition = Vector3.Lerp(X_Body.localPosition, leftTurnPos, Time.fixedDeltaTime * 0.5f);
-                //Debug.Log(X_Body.localPosition.x);
-                yield return new WaitForSeconds(5.0f);
-            }
-        }
+
         #endregion
 
         #region 제자리 돌아오기
         if (!isRight && !isLeft)
         {
             X_Body.localRotation = Quaternion.Euler(10.0f, 0, 0);
-            StartCoroutine(returnCo());
+            resetTurn = StartCoroutine(returnCo());
         }
-        IEnumerator returnCo()
-        {
-            X_Body.localPosition = Vector3.Lerp(X_Body.localPosition, originPos, Time.fixedDeltaTime * 5.0f);
-            yield return new WaitForSeconds(0.5f);
-        }
+
         #endregion
+    }
+
+    IEnumerator RightTurnCo()
+    {
+        while (isRight)
+        {
+            X_Body.localPosition = Vector3.Lerp(X_Body.localPosition, rightTurnPos, Time.fixedDeltaTime * 0.5f);
+            //Debug.Log(X_Body.localPosition.x);
+            yield return new WaitForSeconds(5.0f);
+        }
+    }
+
+    IEnumerator LeftTurnCo()
+    {
+        while (isLeft)
+        {
+            X_Body.localPosition = Vector3.Lerp(X_Body.localPosition, leftTurnPos, Time.fixedDeltaTime * 0.5f);
+            //Debug.Log(X_Body.localPosition.x);
+            yield return new WaitForSeconds(5.0f);
+        }
+    }
+
+    IEnumerator returnCo()
+    {
+        X_Body.localPosition = Vector3.Lerp(X_Body.localPosition, originPos, Time.fixedDeltaTime * 5.0f);
+        yield return new WaitForSeconds(0.5f);
     }
 }

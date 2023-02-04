@@ -203,12 +203,20 @@ namespace VolumetricLines
 				if (null != m_templateMaterial)
 				{
 					m_material = Material.Instantiate(m_templateMaterial);
-					GetComponent<MeshRenderer>().sharedMaterial = m_material;
+					if(TryGetComponent(out MeshRenderer mesh))
+					{
+						mesh.sharedMaterial = m_material;
+					}
+					//GetComponent<MeshRenderer>().sharedMaterial = m_material;
 					SetAllMaterialProperties();
 				}
 				else 
 				{
-					m_material = GetComponent<MeshRenderer>().sharedMaterial;
+					if(TryGetComponent(out MeshRenderer mesh))
+					{
+						m_material = mesh.sharedMaterial;
+					}
+					//m_material = GetComponent<MeshRenderer>().sharedMaterial;
 				}
 			}
 		}
@@ -402,12 +410,13 @@ namespace VolumetricLines
 			SetAllMaterialProperties();
 			UpdateBounds();
 		}
-	
+#if UNITY_EDITOR
 		void OnDrawGizmos()
 		{
 			Gizmos.color = Color.green;
 			Gizmos.DrawLine(gameObject.transform.TransformPoint(m_startPos), gameObject.transform.TransformPoint(m_endPos));
 		}
-		#endregion
+#endif
+#endregion
 	}
 }

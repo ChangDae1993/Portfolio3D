@@ -38,7 +38,7 @@ public class ShotBehavior : MonoBehaviour
                 if (q_fireDelayTimer > 0f)
                 {
                     shotSpeed = 0f;
-                    this.transform.position = new Vector3(player.transform.position.x, player.transform.position.y - 1.5f, player.transform.position.z);
+                    this.transform.position = new Vector3(player.transform.position.x, player.transform.position.y - 2f, player.transform.position.z);
                 }
                 else
                 {
@@ -46,6 +46,8 @@ public class ShotBehavior : MonoBehaviour
                     transform.Translate(Vector3.forward * shotSpeed);
                 }
                 Destroy(this.gameObject, 20.0f);
+                break;
+            case LaserType.grenade:
                 break;
             default:
                 break;
