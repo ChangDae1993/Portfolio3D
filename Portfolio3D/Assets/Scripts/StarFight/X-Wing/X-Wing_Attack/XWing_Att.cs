@@ -5,10 +5,18 @@ using UnityEngine.UI;
 
 public class XWing_Att : MonoBehaviour
 {
+    [Header("Normal bullet ShotPos")]
     public Transform[] ShotPos;
+
+    [Header("Q skill Shot Pos")]
     public Transform TorphidoShotPos;
 
+    [Header("Normal bullet Prefab")]
     public GameObject Laser;
+
+    [Header("Q skill bullet Prefab")]
+    public GameObject Q_Bullet;
+
     public Camera cam;
     public Image skill3BG;
     public float skill3Alpha;
@@ -36,6 +44,7 @@ public class XWing_Att : MonoBehaviour
         skill3Alpha = 0.0f;
         skill3Show.gameObject.SetActive(false);
         upShot = true;
+
     }
 
     #region 단발
@@ -132,7 +141,28 @@ public class XWing_Att : MonoBehaviour
     #region Q스킬
     public void Skill1()
     {
-        Debug.Log("skill1");
+        QbulletFire();
+    }
+
+    public void QbulletFire()
+    {
+        //우선 폭탄 생성하고
+        Instantiate(Q_Bullet, TorphidoShotPos.position, TorphidoShotPos.rotation);
+
+        //움직임 막고
+        if (Q_Bullet.TryGetComponent(out ShotBehavior shotBehavior))
+        {
+            Debug.Log("HERE");
+            shotBehavior.enabled = false;
+        }
+
+        StartCoroutine(QBulletFireCO());
+    }
+
+    IEnumerator QBulletFireCO()
+    {        
+
+        yield return null;
     }
     #endregion
 

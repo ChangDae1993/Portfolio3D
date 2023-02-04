@@ -219,12 +219,14 @@ public class XWing_Input : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             isSkill1 = true;
+            if(skill1Cool >= 3.0f)
+            {
+                x_Att.Skill1();
+            }
         }
         if(isSkill1)
         {
-            x_Att.Skill1();
             skill1Cool -= Time.deltaTime;
-
             if(skill1Cool<= 0.0f)
             {
                 isSkill1 = false;
