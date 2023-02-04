@@ -4,19 +4,15 @@ using UnityEngine;
 
 public class Bullet_Ctrl : MonoBehaviour
 {
-    private void Start() => StartFunc();
-
-    private void StartFunc()
-    {
-         
-    }
-
-    private void Update() => UpdateFunc();
-
-    private void UpdateFunc()
+    private void Start()
     {
         
     }
+
+    //private void Update()
+    //{
+        
+    //}
 
     private void OnTriggerEnter(Collider other)
     {

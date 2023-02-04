@@ -19,19 +19,24 @@ public enum XWingWeaponState
     oneShot,
     spotShot,
     drillShot,
-    torphido,
 }
 
 public enum XWingSkillState
 {
     noSkill,
-    Skill1,
-    Skill2,
-    Skill3,
+    Skill1, //torphido
+    Skill2, //repair
+    Skill3, //dash
+    Skill4, //hyperDrive
 }
+
 
 public class XWing_State_Ctrl : MonoBehaviour
 {
+    public float P_maxhp = 100;
+    public float P_curhp;
+    public float P_xp;
+    public int killCount;
 
     public XWingState X_State;
     public XWingWeaponState XW_State;
@@ -41,6 +46,7 @@ public class XWing_State_Ctrl : MonoBehaviour
 
     private void StartFunc()
     {
+        P_curhp = P_maxhp;
         X_State = XWingState.IdleFly;
         XW_State = XWingWeaponState.oneShot;
         XS_State = XWingSkillState.noSkill;

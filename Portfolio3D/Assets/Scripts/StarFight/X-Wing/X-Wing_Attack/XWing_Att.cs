@@ -1,9 +1,14 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Windows;
 
 public class XWing_Att : MonoBehaviour
 {
+
+    XWing_State_Ctrl xState;
+    XWing_Input xInput;
+
     [Header("Normal bullet ShotPos")]
     public Transform[] ShotPos;
 
@@ -15,6 +20,9 @@ public class XWing_Att : MonoBehaviour
 
     [Header("Q skill bullet Prefab")]
     public GameObject Q_Bullet;
+
+    [Header("E skill value")]
+    public float repairCost;
 
     public Camera cam;
     public Image skill3BG;
@@ -39,10 +47,14 @@ public class XWing_Att : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        xState = GetComponent<XWing_State_Ctrl>();
+        xInput = GetComponent<XWing_Input>();
         cam = GetComponent<Camera>();
         skill3Alpha = 0.0f;
         skill3Show.gameObject.SetActive(false);
         upShot = true;
+
+        repairCost = 0.1f;
     }
 
 
@@ -148,14 +160,39 @@ public class XWing_Att : MonoBehaviour
         //우선 폭탄 생성하고
         Instantiate(Q_Bullet, TorphidoShotPos.position, TorphidoShotPos.rotation);
     }
-
     #endregion
 
     #region E스킬
     public void Skill2()
     {
+        //E skill for healing skillj
+        //repair start -> hp++ -> up by percentage?
+        if (xState.P_curhp < xState.P_maxhp)
+        {
+            StartCoroutine(repairCo());
+        }
+        else
+        {
+            Debug.Log("Repair no need");
+        }
         Debug.Log("Skill2");
     }
+
+    IEnumerator repairCo()
+    {
+        while(xInput.isRepairOn)
+        {
+            xState.P_curhp += repairCost;
+
+            if(xState.P_curhp >= xState.P_maxhp || xInput.skill2Cool <= 1f)
+            {
+                xInput.isRepairOn = false;
+            }
+            yield return null;
+        }
+
+    }
+
     #endregion
 
     #region R스킬

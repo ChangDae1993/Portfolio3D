@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
-using UnityEngine.Playables;
 using UnityEngine.UI;
 
 public class XWing_Input : MonoBehaviour
@@ -43,6 +39,7 @@ public class XWing_Input : MonoBehaviour
     //스킬 bool값
     public bool isSkill1;
     public bool isSKill2;
+    public bool isRepairOn;
     public bool isSkill3;
 
     //스킬 타이머
@@ -69,6 +66,7 @@ public class XWing_Input : MonoBehaviour
 
         isSkill1 = false;
         isSKill2 = false;
+        isRepairOn = false;
         isSkill3 = false;
 
         skill1Cool = 3.0f;
@@ -80,6 +78,7 @@ public class XWing_Input : MonoBehaviour
 
         isBurstShot = false;
         shotBurstCoolTimer = 0.0f;
+
     }
 
     private void Update() => UpdateFunc();
@@ -113,7 +112,7 @@ public class XWing_Input : MonoBehaviour
             }
         }
 
-        if(isBattleMode)
+        if (isBattleMode)
         {
             //Aim옮기기 20 -> 60
             Aim.transform.localPosition = Vector3.Lerp(aimOriginPos, aimTargetPos, Time.fixedDeltaTime * 50.0f);
@@ -163,7 +162,7 @@ public class XWing_Input : MonoBehaviour
                 //단발
                 x_Att.OneShotFunc();
             }
-            else if(x_State.XW_State == XWingWeaponState.spotShot)
+            else if (x_State.XW_State == XWingWeaponState.spotShot)
             {
                 if (!is3Shot)
                 {
@@ -189,9 +188,9 @@ public class XWing_Input : MonoBehaviour
         #region 연사
         if (x_State.XW_State == XWingWeaponState.drillShot)
         {
-            if(Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                if(!isBurstShot)
+                if (!isBurstShot)
                 {
                     x_Att.DrillShotFunc();
                     shotBurstCoolTimer = 10.0f;
@@ -200,7 +199,7 @@ public class XWing_Input : MonoBehaviour
             }
         }
 
-        if(shotBurstCoolTimer > 0)
+        if (shotBurstCoolTimer > 0)
         {
             shotBurstCoolTimer -= Time.deltaTime;
             isBurstShot = true;
@@ -218,16 +217,18 @@ public class XWing_Input : MonoBehaviour
         #region Q스킬
         if (Input.GetKeyDown(KeyCode.Q))
         {
+            //Debug.Log("Q Skill Start");
             isSkill1 = true;
-            if(skill1Cool >= 3.0f)
+            if (skill1Cool >= 3.0f)
             {
+                x_State.XS_State = XWingSkillState.Skill1;
                 x_Att.Skill1();
             }
         }
-        if(isSkill1)
+        if (isSkill1)
         {
             skill1Cool -= Time.deltaTime;
-            if(skill1Cool<= 0.0f)
+            if (skill1Cool <= 0.0f)
             {
                 isSkill1 = false;
                 skill1Cool = 3.0f;
@@ -239,13 +240,17 @@ public class XWing_Input : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             isSKill2 = true;
+            isRepairOn = true;
+            if (skill2Cool >= 3.0f || isRepairOn)
+            {
+                x_State.XS_State = XWingSkillState.Skill2;
+                x_Att.Skill2();
+            }
         }
-        if(isSKill2)
+        if (isSKill2)
         {
-            x_Att.Skill2();
             skill2Cool -= Time.deltaTime;
-
-            if(skill2Cool <= 0.0f)
+            if (skill2Cool <= 0.0f)
             {
                 isSKill2 = false;
                 skill2Cool = 3.0f;
