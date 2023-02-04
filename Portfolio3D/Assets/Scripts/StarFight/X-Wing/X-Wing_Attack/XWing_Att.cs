@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -44,8 +43,8 @@ public class XWing_Att : MonoBehaviour
         skill3Alpha = 0.0f;
         skill3Show.gameObject.SetActive(false);
         upShot = true;
-
     }
+
 
     #region 단발
     public void OneShotFunc()
@@ -65,7 +64,7 @@ public class XWing_Att : MonoBehaviour
     #region 3연발
     public void SpotShotFunc()
     {
-        if(upShot)
+        if (upShot)
         {
             StartCoroutine(Upshot3AttCo());
         }
@@ -78,7 +77,7 @@ public class XWing_Att : MonoBehaviour
     IEnumerator Upshot3AttCo()
     {
         int a = 0;
-        while(a < 3)
+        while (a < 3)
         {
             Instantiate(Laser, ShotPos[0].position, ShotPos[0].rotation);
             Instantiate(Laser, ShotPos[1].position, ShotPos[1].rotation);
@@ -148,22 +147,8 @@ public class XWing_Att : MonoBehaviour
     {
         //우선 폭탄 생성하고
         Instantiate(Q_Bullet, TorphidoShotPos.position, TorphidoShotPos.rotation);
-
-        //움직임 막고
-        if (Q_Bullet.TryGetComponent(out ShotBehavior shotBehavior))
-        {
-            Debug.Log("HERE");
-            shotBehavior.enabled = false;
-        }
-
-        StartCoroutine(QBulletFireCO());
     }
 
-    IEnumerator QBulletFireCO()
-    {        
-
-        yield return null;
-    }
     #endregion
 
     #region E스킬
@@ -179,7 +164,7 @@ public class XWing_Att : MonoBehaviour
         Debug.Log("SKill3");
         //카메라 사이즈 80->65까지 낮추기
         cam.fieldOfView += Time.deltaTime * 50.0f;
-        if(cam.fieldOfView >120)
+        if (cam.fieldOfView > 120)
         {
             cam.fieldOfView = 120;
         }
@@ -188,7 +173,7 @@ public class XWing_Att : MonoBehaviour
 
         //캔버스 색 푸른색으로 살짝 바꾸기
         skill3Alpha += Time.deltaTime * 10.0f;
-        skill3BG.color = new Color(0/255f, 30/255f, 255/255f, (skill3Alpha)/255f);
+        skill3BG.color = new Color(0 / 255f, 30 / 255f, 255 / 255f, (skill3Alpha) / 255f);
 
         //게이지 표출 + 깎기
         skill3Show.gameObject.SetActive(true);
@@ -213,7 +198,7 @@ public class XWing_Att : MonoBehaviour
 
         //궁발사
 
-        
+
     }
     #endregion
 
