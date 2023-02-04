@@ -47,7 +47,7 @@ public class Game_Mgr : MonoBehaviour
         }
 
 
-        //x-wingInput및 일시정지 할 것들 추가
+        //x-wingInput및 일시정지 할 것들 (지속적으로 추가필요)
         if(isInstructionOn)
         {
             x_Input.enabled = false;
