@@ -458,7 +458,8 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: "\uAE30\uBCF8 \uCD1D\uC54C = bullet_Ctrl \uCEF4\uD3EC\uB10C\uD2B8 \uC4F0\uAE30\nQ\uC2A4\uD0AC
-    = qSkill_Ctrl \uC4F0\uAE30"
+    = qSkill_Ctrl \uC4F0\uAE30\n\n\uC9C0\uD615\uC740 Back_Ground, Back_Wall \uC544\uB2C8\uBA74
+    Back_OBJ\uB85C Layer\uB9CC\uB4E4\uAE30(\uCD94\uAC00 \uAC00\uB2A5)"
 --- !u!222 &1752552866
 CanvasRenderer:
   m_ObjectHideFlags: 0
