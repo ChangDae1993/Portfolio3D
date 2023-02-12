@@ -7,6 +7,8 @@ public class Game_Mgr : MonoBehaviour
 {
     // fadeOut UI
     public Image fadeOutImg;
+    public GameObject xWingUI;
+
     Coroutine fadeOut;
     [SerializeField] private float fadeOutAlpha;
 
@@ -20,6 +22,8 @@ public class Game_Mgr : MonoBehaviour
 
     private void Awake()
     {
+        xWingUI.gameObject.SetActive(false);
+
         x_Input = FindObjectOfType<XWing_Input>();
         x_Move = FindObjectOfType<XWing_Move>();
         x_Rotate = FindObjectOfType<XWing_Rotate>();
@@ -73,5 +77,6 @@ public class Game_Mgr : MonoBehaviour
             yield return new WaitForSeconds(0.11f);
             //Debug.Log(fadeOutAlpha);
         }
+        xWingUI.gameObject.SetActive(true);
     }
 }
