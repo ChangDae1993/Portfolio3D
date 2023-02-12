@@ -66,8 +66,6 @@ public class XWing_Move : MonoBehaviour
         }
 
 
-
-
         #region 상하 회전
 
         //if (X_Rotate.rv > 0.5f)
