@@ -35,9 +35,7 @@ public class XWing_Move : MonoBehaviour
     Coroutine leftTurn;
     Coroutine resetTurn;
 
-    private void Start() => StartFunc();
-
-    private void StartFunc()
+    void Start()
     {
         x_State = GetComponent<XWing_State_Ctrl>();
         X_Input = GetComponent<XWing_Input>();
@@ -49,9 +47,7 @@ public class XWing_Move : MonoBehaviour
         leftTurnPos = new Vector3(7.0f, -4.5f, 10.5f);
     }
 
-    private void Update() => UpdateFunc();
-
-    private void UpdateFunc()
+    void Update()
     {
 
         if(X_Input.v > 0.0f)

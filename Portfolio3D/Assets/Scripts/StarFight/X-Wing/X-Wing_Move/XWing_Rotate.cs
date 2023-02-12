@@ -14,16 +14,12 @@ public class XWing_Rotate : MonoBehaviour
 
     private Camera cam;
 
-    private void Start() => StartFunc();
-
-    private void StartFunc()
+    void Start()
     {
         cam = Camera.main;
     }
 
-    private void Update() => UpdateFunc();
-
-    private void UpdateFunc()
+    void Update()
     {
         rh = Input.GetAxis("Mouse X");
         rv = Input.GetAxis("Mouse Y");

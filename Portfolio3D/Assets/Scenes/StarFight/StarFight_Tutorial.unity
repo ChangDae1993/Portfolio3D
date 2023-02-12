@@ -459,6 +459,7 @@ MonoBehaviour:
   x_Input: {fileID: 0}
   x_Move: {fileID: 0}
   x_Rotate: {fileID: 0}
+  x_UI: {fileID: 0}
 --- !u!1 &553977201
 GameObject:
   m_ObjectHideFlags: 0
@@ -1179,6 +1180,7 @@ RectTransform:
   m_Children:
   - {fileID: 1424804203}
   - {fileID: 1396478371}
+  - {fileID: 1837593255}
   m_Father: {fileID: 1892663572}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2113,6 +2115,82 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &1837593254
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1837593255}
+  - component: {fileID: 1837593257}
+  - component: {fileID: 1837593256}
+  m_Layer: 5
+  m_Name: XWing_HP_IMG
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1837593255
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837593254}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 862262392}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 376.1, y: -300}
+  m_SizeDelta: {x: 500, y: 40}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1837593256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837593254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1837593257
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837593254}
+  m_CullTransparentMesh: 1
 --- !u!1 &1892663569
 GameObject:
   m_ObjectHideFlags: 0
@@ -2128,6 +2206,7 @@ GameObject:
   - component: {fileID: 1892663573}
   - component: {fileID: 1892663576}
   - component: {fileID: 1892663577}
+  - component: {fileID: 1892663578}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2236,6 +2315,7 @@ MonoBehaviour:
   isSKill2: 0
   isRepairOn: 0
   isSkill3: 0
+  isSKill4: 0
   skill1Cool: 0
   skill2Cool: 0
   skill3Cool: 0
@@ -2296,15 +2376,28 @@ MonoBehaviour:
   Laser: {fileID: 2561301769825529854, guid: 93c1e17cf6bbc9d4b8e59176b8bd8840, type: 3}
   Q_Bullet: {fileID: 2561301769825529854, guid: 9f8dccf342a4aec498c284f6226d6a11, type: 3}
   repairCost: 0
-  cam: {fileID: 0}
-  skill3BG: {fileID: 1424804204}
-  skill3Alpha: 0
   skill3Show: {fileID: 1396478370}
   attNum: 0
   att3Num: 0
   upShot: 0
   a: 0
   skill3Gage: {fileID: 827202196}
+--- !u!114 &1892663578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892663569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 606075127fe67f24eb1fe987d268e52a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP_IMG: {fileID: 1837593256}
+  cam: {fileID: 0}
+  skill3BG: {fileID: 1424804204}
+  skill3Alpha: 0
 --- !u!1 &1955718878
 GameObject:
   m_ObjectHideFlags: 0

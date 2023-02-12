@@ -15,6 +15,7 @@ public class Game_Mgr : MonoBehaviour
     [SerializeField] private XWing_Input x_Input;
     [SerializeField] private XWing_Move x_Move;
     [SerializeField] private XWing_Rotate x_Rotate;
+    [SerializeField] private XWing_UI x_UI;
 
 
     private void Awake()
@@ -22,6 +23,7 @@ public class Game_Mgr : MonoBehaviour
         x_Input = FindObjectOfType<XWing_Input>();
         x_Move = FindObjectOfType<XWing_Move>();
         x_Rotate = FindObjectOfType<XWing_Rotate>();
+        x_UI = FindObjectOfType<XWing_UI>();
     }
 
     // Start is called before the first frame update
@@ -47,7 +49,7 @@ public class Game_Mgr : MonoBehaviour
         }
 
 
-        //x-wingInput및 일시정지 할 것들 (지속적으로 추가필요)
+        //x-wingInput및 일시정지 할 것들 (지속적으로 추가필요) ex: 플레이어 외의 TIE파이터 || NPC등등
         if(isInstructionOn)
         {
             x_Input.enabled = false;

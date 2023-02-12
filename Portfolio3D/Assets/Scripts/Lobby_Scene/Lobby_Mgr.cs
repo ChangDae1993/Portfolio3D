@@ -11,9 +11,7 @@ public class Lobby_Mgr : MonoBehaviour
     public Button Shop_Btn;
     public Button Setting_Btn;
 
-    private void Start() => StartFunc();
-
-    private void StartFunc()
+    void Start()
     {
         if (Play_Btn != null)
             Play_Btn.onClick.AddListener(PlayBtnFunc);
@@ -25,12 +23,10 @@ public class Lobby_Mgr : MonoBehaviour
             Setting_Btn.onClick.AddListener(SettingBtnFunc);
     }
 
-    private void Update() => UpdateFunc();
-
-    private void UpdateFunc()
-    {
+    //private void Update()
+    //{
         
-    }
+    //}
 
     public void PlayBtnFunc()
     {

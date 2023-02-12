@@ -24,10 +24,10 @@ public enum XWingWeaponState
 public enum XWingSkillState
 {
     noSkill,
-    Skill1, //torphido
-    Skill2, //repair
-    Skill3, //dash
-    Skill4, //hyperDrive
+    Skill1, //torphido Q
+    Skill2, //repair E
+    Skill3, //R skill
+    Skill4, //dash L+Shift
 }
 
 
@@ -42,9 +42,7 @@ public class XWing_State_Ctrl : MonoBehaviour
     public XWingWeaponState XW_State;
     public XWingSkillState XS_State;
 
-    private void Start() => StartFunc();
-
-    private void StartFunc()
+    void Start()
     {
         P_curhp = P_maxhp;
         X_State = XWingState.IdleFly;

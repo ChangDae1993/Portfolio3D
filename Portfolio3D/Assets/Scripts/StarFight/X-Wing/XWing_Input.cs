@@ -41,6 +41,7 @@ public class XWing_Input : MonoBehaviour
     public bool isSKill2;
     public bool isRepairOn;
     public bool isSkill3;
+    public bool isSKill4;
 
     //스킬 타이머
     public float skill1Cool;
@@ -49,9 +50,7 @@ public class XWing_Input : MonoBehaviour
 
 
 
-    private void Start() => StartFunc();
-
-    private void StartFunc()
+    void Start()
     {
         x_State = GetComponent<XWing_State_Ctrl>();
         x_Att = GetComponent<XWing_Att>();
@@ -63,11 +62,12 @@ public class XWing_Input : MonoBehaviour
         aimTargetPos = new Vector3(6, 60, -400);
 
 
-
         isSkill1 = false;
         isSKill2 = false;
         isRepairOn = false;
         isSkill3 = false;
+        isSKill4 = false;
+
 
         skill1Cool = 3.0f;
         skill2Cool = 3.0f;
@@ -81,9 +81,7 @@ public class XWing_Input : MonoBehaviour
 
     }
 
-    private void Update() => UpdateFunc();
-
-    private void UpdateFunc()
+    private void Update()
     {
         //h = Input.GetAxisRaw("Horizontal");
         v = Input.GetAxisRaw("Vertical");
@@ -269,6 +267,7 @@ public class XWing_Input : MonoBehaviour
             isSkill3 = false;
             x_Att.Skill3Fire();
         }
+
         if (isSkill3)
         {
             x_Att.Skill3();
@@ -276,6 +275,14 @@ public class XWing_Input : MonoBehaviour
         else
         {
 
+        }
+        #endregion
+
+        #region Dash스킬
+        if(Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            isSKill4 = true;
+            x_Att.Skill4();
         }
         #endregion
 
