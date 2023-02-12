@@ -243,8 +243,15 @@ public class XWing_Att : MonoBehaviour
     #region dash
     public void Skill4()
     {
-        Debug.Log("Dash SKill");
+        //Debug.Log("Dash SKill");
+        StartCoroutine(DashOnCo());
     }
+
+    IEnumerator DashOnCo()
+    {
+        Debug.Log("DASH");
+        yield return null;
+    }    
     #endregion
 
 
