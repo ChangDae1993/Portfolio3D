@@ -11,8 +11,10 @@ public class XWing_Att : MonoBehaviour
     XWing_UI xUI;
     XWing_Move xMove;
 
-    //[Header("Camera Shake")]
-    //[SerializeField] private CamShake camShake;
+    Camera xCamera;
+
+    [Header("Camera Shake")]
+    [SerializeField] private CamShake camShake;
 
     [Header("Normal bullet ShotPos")]
     public Transform[] ShotPos;
@@ -55,7 +57,8 @@ public class XWing_Att : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //camShake = GetComponent<CamShake>();
+        xCamera = GetComponentInChildren<Camera>();
+        camShake = GetComponentInChildren<CamShake>();
         xState = GetComponent<XWing_State_Ctrl>();
         xInput = GetComponent<XWing_Input>();
         xUI = GetComponent<XWing_UI>();
@@ -265,6 +268,11 @@ public class XWing_Att : MonoBehaviour
 
     IEnumerator DashOnCo()
     {
+        if (xState.X_State == XWingState.IdleFly)
+        {
+            Debug.Log("Unable Dash");
+            yield break;
+        }
 
         while (xInput.isSKill4)
         {
@@ -273,14 +281,16 @@ public class XWing_Att : MonoBehaviour
                 dashTimer = dashDefaultTimer;
                 xMove.moveVelocity = 30.0f;
                 xInput.isSKill4 = false;
+                xCamera.transform.localPosition = Vector3.zero;
             }
             else
             {
-                //StartCoroutine(camShake.Shake(dashDefaultTimer, 4f));
+                //xCamera.transform.localPosition = new Vector3(xCamera.transform.localPosition.x, xCamera.transform.localPosition.y, dashTimer);
+                StartCoroutine(camShake.Shake(dashDefaultTimer, 0.1f));
                 xState.XS_State = XWingSkillState.Skill4;
                 dashTimer -= Time.deltaTime;
                 xMove.moveVelocity = dashSpeed;
-                Debug.Log("DASH");
+                //Debug.Log("DASH");
             }
             yield return null;
         }

@@ -6,7 +6,7 @@ public class CamShake : MonoBehaviour
 {
     public IEnumerator Shake(float duration, float magitude)
     {
-        Debug.Log("HERE");
+        //Debug.Log("HERE");
 
         Vector3 originpos = transform.localPosition;
 
@@ -16,9 +16,8 @@ public class CamShake : MonoBehaviour
         {
             float x = Random.Range(-1f, 1f) * magitude;
             float y = Random.Range(-1f, 1f) * magitude;
-            float z = Random.Range(-1f, 1f) * magitude;
 
-            transform.localPosition = new Vector3(x, y, z);
+            transform.localPosition = new Vector3(x, y, transform.localPosition.z);
 
             elapsed += Time.deltaTime;
 
