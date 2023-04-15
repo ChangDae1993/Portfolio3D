@@ -9,6 +9,10 @@ public class XWing_Att : MonoBehaviour
     XWing_State_Ctrl xState;
     XWing_Input xInput;
     XWing_UI xUI;
+    XWing_Move xMove;
+
+    //[Header("Camera Shake")]
+    //[SerializeField] private CamShake camShake;
 
     [Header("Normal bullet ShotPos")]
     public Transform[] ShotPos;
@@ -43,16 +47,27 @@ public class XWing_Att : MonoBehaviour
     //R스킬 게이지
     public Image skill3Gage;
 
+    [Header("---Dash---")]
+    [SerializeField] private float dashTimer;
+    [SerializeField] private float dashDefaultTimer;
+    [SerializeField] private float dashSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
+        //camShake = GetComponent<CamShake>();
         xState = GetComponent<XWing_State_Ctrl>();
         xInput = GetComponent<XWing_Input>();
         xUI = GetComponent<XWing_UI>();
+        xMove = GetComponent<XWing_Move>();
         skill3Show.gameObject.SetActive(false);
         upShot = true;
 
         repairCost = 0.1f;
+
+        dashTimer = 4.0f;
+        dashDefaultTimer = 4.0f;
+        dashSpeed = 150.0f;
     }
 
 
@@ -179,14 +194,14 @@ public class XWing_Att : MonoBehaviour
 
     IEnumerator repairCo()
     {
-        while(xInput.isRepairOn)
+        while (xInput.isRepairOn)
         {
             if (xState.P_curhp == xState.P_maxhp)
                 break;
 
             xState.P_curhp += repairCost;
 
-            if(xState.P_curhp >= xState.P_maxhp || xInput.skill2Cool <= 1f)
+            if (xState.P_curhp >= xState.P_maxhp || xInput.skill2Cool <= 1f)
             {
                 xInput.isRepairOn = false;
             }
@@ -250,9 +265,26 @@ public class XWing_Att : MonoBehaviour
 
     IEnumerator DashOnCo()
     {
-        Debug.Log("DASH");
-        yield return null;
-    }    
+
+        while (xInput.isSKill4)
+        {
+            if (dashTimer < 0f)
+            {
+                dashTimer = dashDefaultTimer;
+                xMove.moveVelocity = 30.0f;
+                xInput.isSKill4 = false;
+            }
+            else
+            {
+                //StartCoroutine(camShake.Shake(dashDefaultTimer, 4f));
+                xState.XS_State = XWingSkillState.Skill4;
+                dashTimer -= Time.deltaTime;
+                xMove.moveVelocity = dashSpeed;
+                Debug.Log("DASH");
+            }
+            yield return null;
+        }
+    }
     #endregion
 
 

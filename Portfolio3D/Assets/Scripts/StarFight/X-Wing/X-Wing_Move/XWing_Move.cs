@@ -8,8 +8,8 @@ public class XWing_Move : MonoBehaviour
     XWing_Input X_Input;
     XWing_Rotate X_Rotate;
 
-    float moveVelocity = 30.0f;    //평면 초당 이동 속도
-    float idleVelocity = 3.0f;
+    [HideInInspector] public float moveVelocity = 30.0f;    //평면 초당 이동 속도
+    [HideInInspector] public float idleVelocity = 3.0f;
 
     //float runSpeed = 20.0f;
 
@@ -65,6 +65,8 @@ public class XWing_Move : MonoBehaviour
             transform.position = transform.position + MoveNextStep;
         }
 
+
+        //Debug.Log(moveVelocity);
 
         #region 상하 회전
 

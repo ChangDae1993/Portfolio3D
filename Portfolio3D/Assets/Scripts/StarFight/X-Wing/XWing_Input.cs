@@ -274,7 +274,7 @@ public class XWing_Input : MonoBehaviour
         }
         else
         {
-            Debug.Log("Here for What");
+            //Debug.Log("Here for What");
         }
         #endregion
 
