@@ -8,7 +8,7 @@ public class CamShake : MonoBehaviour
     {
         //Debug.Log("HERE");
 
-        Vector3 originpos = transform.localPosition;
+        Vector3 originpos = this.transform.localPosition;
 
         float elapsed = 0.0f;
 

@@ -40,7 +40,7 @@ public class XWing_Att : MonoBehaviour
 
     [Header("---3Shot---")]
     //3연발 관련
-    [SerializeField] private int att3Num = 0;
+    //[SerializeField] private int att3Num = 0;
     [SerializeField] private bool upShot;
 
     [Header("---BurstShot---")]
@@ -144,7 +144,7 @@ public class XWing_Att : MonoBehaviour
 
     IEnumerator BurstShotCo()
     {
-        Debug.Log("Test Here");
+        //Debug.Log("Test Here");
         while (a < 20)
         {
             Instantiate(Laser, ShotPos[0].position, ShotPos[0].rotation);
