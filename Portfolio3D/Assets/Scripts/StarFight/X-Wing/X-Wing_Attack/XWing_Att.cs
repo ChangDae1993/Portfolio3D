@@ -155,7 +155,7 @@ public class XWing_Att : MonoBehaviour
 
     public void QbulletFire()
     {
-        //快急 气藕 积己窍绊
+        //气藕 积己 饶 舅酒辑 惯荤凳
         Instantiate(Q_Bullet, TorphidoShotPos.position, TorphidoShotPos.rotation);
     }
     #endregion
@@ -172,6 +172,7 @@ public class XWing_Att : MonoBehaviour
         else
         {
             Debug.Log("Repair no need");
+            Debug.Log("Hp UI blink effect add here");
         }
         Debug.Log("Skill2");
     }
