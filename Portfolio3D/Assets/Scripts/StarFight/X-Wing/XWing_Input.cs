@@ -274,6 +274,7 @@ public class XWing_Input : MonoBehaviour
         }
         else
         {
+            x_State.XS_State = XWingSkillState.Skill3;
             //Debug.Log("Here for What");
         }
         #endregion

@@ -14,6 +14,7 @@ public class CamShake : MonoBehaviour
 
         while(elapsed < duration)
         {
+            //Debug.Log("Shake");
             float x = Random.Range(-1f, 1f) * magitude;
             float y = Random.Range(-1f, 1f) * magitude;
 

@@ -262,17 +262,24 @@ public class XWing_Att : MonoBehaviour
     #region dash
     public void Skill4()
     {
+        if(xState.X_State == XWingState.Fly)
+        {
+            StartCoroutine(DashOnCo());
+        }
+        else
+        {
+            Debug.Log("Unable Dash");
+        }
         //Debug.Log("Dash SKill");
-        StartCoroutine(DashOnCo());
     }
 
     IEnumerator DashOnCo()
     {
-        if (xState.X_State == XWingState.IdleFly)
-        {
-            Debug.Log("Unable Dash");
-            yield break;
-        }
+        //if (xState.X_State == XWingState.IdleFly)
+        //{
+        //    Debug.Log("Unable Dash");
+        //    yield break;
+        //}
 
         while (xInput.isSKill4)
         {
