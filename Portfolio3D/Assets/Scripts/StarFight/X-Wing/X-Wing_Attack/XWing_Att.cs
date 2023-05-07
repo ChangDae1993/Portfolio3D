@@ -297,7 +297,7 @@ public class XWing_Att : MonoBehaviour
                 xState.XS_State = XWingSkillState.Skill4;
                 dashTimer -= Time.deltaTime;
                 xMove.moveVelocity = dashSpeed;
-                //Debug.Log("DASH");
+                Debug.Log("DASH");
             }
             yield return null;
         }

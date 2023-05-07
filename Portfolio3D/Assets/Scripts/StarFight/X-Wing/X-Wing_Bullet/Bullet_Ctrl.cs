@@ -24,6 +24,7 @@ public class Bullet_Ctrl : MonoBehaviour
         {
             Destroy(this.gameObject);
             Debug.Log("Ground_Hit");
+            //효과음 불러내기 || 다른 작용 추가
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Enemy") ||
             other.gameObject.layer == LayerMask.NameToLayer("Explode_OBJ"))
@@ -32,13 +33,14 @@ public class Bullet_Ctrl : MonoBehaviour
             {
                 esc.Hit(damage);
             }
-            //else if(other.gameObject.TryGetComponent(out Explode_OBJ_Ctrl eoc))
+            //else if (other.gameObject.TryGetComponent(out Explode_OBJ_Ctrl eoc))
             //{
             //    eoc.Hit(damage);
             //}
 
             Destroy(this.gameObject);
             Debug.Log("Enemy_Hit");
+
         }
     }
 }

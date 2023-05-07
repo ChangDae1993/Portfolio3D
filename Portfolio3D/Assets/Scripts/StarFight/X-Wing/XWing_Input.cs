@@ -117,6 +117,8 @@ public class XWing_Input : MonoBehaviour
         }
         else
         {
+            //샷모드 다시 원샷으로 바꾸기
+            x_State.XW_State = XWingWeaponState.oneShot;
             //Aim다시 60 -> 20으로 옮기기
             Aim.transform.localPosition = Vector3.Lerp(aimTargetPos, aimOriginPos, Time.fixedDeltaTime * 50.0f);
         }
@@ -138,12 +140,21 @@ public class XWing_Input : MonoBehaviour
         #region 무기 타입 변환
         if (Input.GetKeyDown(KeyCode.C))
         {
-            shotState++;
-            if (shotState > 3)
+            if (isBattleMode)
             {
-                shotState = 0;
+                //Debug.Log("변경 가능");
+                shotState++;
+                if (shotState > 2)
+                {
+                    shotState = 0;
+                }
+                x_State.XW_State = (XWingWeaponState)shotState;
             }
-            x_State.XW_State = (XWingWeaponState)shotState;
+            else
+            {
+                Debug.Log("전투 모드 변경 불가 사운드 or UI 추가할 곳");
+                x_State.XW_State = XWingWeaponState.oneShot;
+            }
         }
         #endregion
 
@@ -280,7 +291,7 @@ public class XWing_Input : MonoBehaviour
         #endregion
 
         #region Dash스킬
-        if(Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             isSKill4 = true;
             x_Att.Skill4();
