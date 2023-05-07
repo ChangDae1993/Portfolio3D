@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cb039d3a64491f4ebfc852d25b5ee70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotSpeed: 1
+  shotSpeed: 3
   laserType: 1
   q_fireDelayTimer: 0
 --- !u!114 &1770639462744993840
@@ -209,3 +209,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd744238ee999634d8c837ebeccd46e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0

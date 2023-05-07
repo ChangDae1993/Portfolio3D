@@ -25,7 +25,36 @@ public class ShotBehavior : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    //void Update()
+    //{
+    //    switch (laserType)
+    //    {
+    //        case LaserType.laser:
+    //            transform.Translate(Vector3.forward * shotSpeed);
+    //            Destroy(this.gameObject, 5.0f);
+    //            break;
+    //        case LaserType.torphido:
+    //            q_fireDelayTimer -= Time.deltaTime;
+    //            if (q_fireDelayTimer > 0f)
+    //            {
+    //                shotSpeed = 0f;
+    //                this.transform.position = new Vector3(player.transform.position.x, player.transform.position.y - 3.0f, player.transform.position.z);
+    //            }
+    //            else
+    //            {
+    //                shotSpeed = 1f;
+    //                transform.Translate(Vector3.forward * shotSpeed);
+    //            }
+    //            Destroy(this.gameObject, 20.0f);
+    //            break;
+    //        case LaserType.grenade:
+    //            break;
+    //        default:
+    //            break;
+    //    }
+    //}
+
+    private void FixedUpdate()
     {
         switch (laserType)
         {
@@ -35,14 +64,14 @@ public class ShotBehavior : MonoBehaviour
                 break;
             case LaserType.torphido:
                 q_fireDelayTimer -= Time.deltaTime;
-                if (q_fireDelayTimer > 0f)
+                if(q_fireDelayTimer > 0f)
                 {
                     shotSpeed = 0f;
                     this.transform.position = new Vector3(player.transform.position.x, player.transform.position.y - 3.0f, player.transform.position.z);
                 }
                 else
                 {
-                    shotSpeed = 1f;
+                    shotSpeed = 5f;
                     transform.Translate(Vector3.forward * shotSpeed);
                 }
                 Destroy(this.gameObject, 20.0f);
@@ -52,6 +81,5 @@ public class ShotBehavior : MonoBehaviour
             default:
                 break;
         }
-
     }
 }
