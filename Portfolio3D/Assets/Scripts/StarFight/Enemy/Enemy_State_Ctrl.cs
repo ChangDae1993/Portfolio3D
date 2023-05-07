@@ -16,7 +16,7 @@ public class Enemy_State_Ctrl : MonoBehaviour
         
     //}
 
-    public void Hit(float damage)
+    public void E_Hit(float damage)
     {
         Debug.Log("hit" + damage);
     }

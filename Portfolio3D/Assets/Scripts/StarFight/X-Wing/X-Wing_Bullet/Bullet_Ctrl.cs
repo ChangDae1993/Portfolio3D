@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//플레이어 용 Bullet
 public class Bullet_Ctrl : MonoBehaviour
 {
-    public float damage;
+    [SerializeField] private XWing_State_Ctrl xState;
 
     private void Start()
     {
-        damage = 10f;
+        xState = FindObjectOfType<XWing_State_Ctrl>();
     }
 
     //private void Update()
@@ -31,7 +32,7 @@ public class Bullet_Ctrl : MonoBehaviour
         {
             if (other.gameObject.TryGetComponent(out Enemy_State_Ctrl esc))
             {
-                esc.Hit(damage);
+                esc.E_Hit(xState.damage);
             }
             //else if (other.gameObject.TryGetComponent(out Explode_OBJ_Ctrl eoc))
             //{
@@ -40,7 +41,6 @@ public class Bullet_Ctrl : MonoBehaviour
 
             Destroy(this.gameObject);
             Debug.Log("Enemy_Hit");
-
         }
     }
 }

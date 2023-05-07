@@ -38,6 +38,8 @@ public class XWing_State_Ctrl : MonoBehaviour
     public float P_curhp;
     public float P_xp;
 
+    public float damage;
+
     public int killCount;
 
     public XWingState X_State;
@@ -50,5 +52,10 @@ public class XWing_State_Ctrl : MonoBehaviour
         X_State = XWingState.IdleFly;
         XW_State = XWingWeaponState.oneShot;
         XS_State = XWingSkillState.noSkill;
+    }
+
+    public void P_Hit(int damage)
+    {
+        Debug.Log("hit" + damage);
     }
 }
