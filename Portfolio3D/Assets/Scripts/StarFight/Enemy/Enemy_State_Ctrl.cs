@@ -11,10 +11,10 @@ public class Enemy_State_Ctrl : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    //void Update()
+    //{
         
-    }
+    //}
 
     public void Hit(float damage)
     {
