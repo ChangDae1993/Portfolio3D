@@ -20,7 +20,9 @@ public class XWing_Move : MonoBehaviour
     [SerializeField] private Transform X_Body;
 
     [SerializeField] private bool isRight;
+    [SerializeField] private bool rightMoveStart;
     [SerializeField] private bool isLeft;
+    [SerializeField] private bool leftMoveStart;
 
     [SerializeField] private bool isUp;
     [SerializeField] private bool isDown;
@@ -45,15 +47,17 @@ public class XWing_Move : MonoBehaviour
         originPos = new Vector3(0.0f, -4.5f, 10.5f);
         rightTurnPos = new Vector3(-7.0f, -4.5f, 10.5f);
         leftTurnPos = new Vector3(7.0f, -4.5f, 10.5f);
+
+        rightMoveStart = false;
+        leftMoveStart = false;
     }
 
     void Update()
     {
 
-        if(X_Input.v > 0.0f)
+        if (X_Input.v > 0.0f)
         {
             x_State.X_State = XWingState.Fly;
-
             MoveVStep = transform.forward * X_Input.v;
             MoveNextStep = MoveVStep.normalized * moveVelocity * Time.deltaTime;
             transform.position = transform.position + MoveNextStep;
@@ -129,14 +133,20 @@ public class XWing_Move : MonoBehaviour
         if (isRight)
         {
             X_Body.localRotation = Quaternion.Euler(10.0f, 0, -30.0f);
-            rightTurn = StartCoroutine(RightTurnCo());
+            if (!rightMoveStart)
+            {
+                rightTurn = StartCoroutine(RightTurnCo());
+            }
         }
 
 
         if (isLeft)
         {
             X_Body.localRotation = Quaternion.Euler(10.0f, 0, 30.0f);
-            leftTurn = StartCoroutine(LeftTurnCo());
+            if (!leftMoveStart)
+            {
+                leftTurn = StartCoroutine(LeftTurnCo());
+            }
         }
 
         #endregion
@@ -159,6 +169,7 @@ public class XWing_Move : MonoBehaviour
             //Debug.Log(X_Body.localPosition.x);
             yield return new WaitForSeconds(5.0f);
         }
+        rightMoveStart = false;
     }
 
     IEnumerator LeftTurnCo()
@@ -169,6 +180,7 @@ public class XWing_Move : MonoBehaviour
             //Debug.Log(X_Body.localPosition.x);
             yield return new WaitForSeconds(5.0f);
         }
+        leftMoveStart = false;
     }
 
     IEnumerator returnCo()

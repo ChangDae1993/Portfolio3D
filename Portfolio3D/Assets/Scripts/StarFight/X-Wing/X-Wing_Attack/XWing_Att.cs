@@ -274,6 +274,7 @@ public class XWing_Att : MonoBehaviour
         }
         else
         {
+            xInput.isSKill4 = false;
             Debug.Log("Unable Dash");
         }
         //Debug.Log("Dash SKill");
