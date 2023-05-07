@@ -193,9 +193,13 @@ public class XWing_Att : MonoBehaviour
         else
         {
             xState.P_curhp = xState.P_maxhp;
-            HPUIBlink();
+            if (!xUI.blinkShow)
+            {
+                StartCoroutine(xUI.HPUIBlink());
+                //StartCoroutine(HPUIBlink());
+            }
         }
-        Debug.Log("Skill2");
+        //Debug.Log("Skill2");
     }
 
     IEnumerator repairCo()
@@ -216,12 +220,7 @@ public class XWing_Att : MonoBehaviour
         }
     }
 
-    public void HPUIBlink()
-    {
-        //다른 곳에서도 쓸 수 있기 때문에 우선은 public으로 지정
-        Debug.Log("Repair no need");
-        Debug.Log("Hp UI blink effect add here");
-    }
+
 
     #endregion
 
