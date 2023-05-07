@@ -2684,7 +2684,9 @@ MonoBehaviour:
   idleVelocity: 3
   X_Body: {fileID: 0}
   isRight: 0
+  rightMoveStart: 0
   isLeft: 0
+  leftMoveStart: 0
   isUp: 0
   isDown: 0
 --- !u!114 &2012646472
@@ -2717,6 +2719,7 @@ MonoBehaviour:
   P_maxhp: 100
   P_curhp: 0
   P_xp: 0
+  damage: 10
   killCount: 0
   X_State: 0
   XW_State: 0
