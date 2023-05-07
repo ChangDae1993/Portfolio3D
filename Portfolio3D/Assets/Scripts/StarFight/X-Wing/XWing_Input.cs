@@ -293,8 +293,16 @@ public class XWing_Input : MonoBehaviour
         #region Dash½ºÅ³
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            isSKill4 = true;
-            x_Att.Skill4();
+            if (!isSKill4)
+            {
+                isSKill4 = true;
+                x_Att.Skill4();
+            }
+            else
+            {
+                Debug.Log("Dashing");
+                return;
+            }
         }
         #endregion
 

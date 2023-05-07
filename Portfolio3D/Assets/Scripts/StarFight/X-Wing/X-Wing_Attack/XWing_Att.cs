@@ -12,6 +12,7 @@ public class XWing_Att : MonoBehaviour
     XWing_Move xMove;
 
     Camera xCamera;
+    [SerializeField] private bool camShakeStart;
 
     [Header("Camera Shake")]
     [SerializeField] private CamShake camShake;
@@ -71,6 +72,8 @@ public class XWing_Att : MonoBehaviour
         dashTimer = 4.0f;
         dashDefaultTimer = 4.0f;
         dashSpeed = 150.0f;
+
+        camShakeStart = false;
     }
 
 
@@ -189,6 +192,7 @@ public class XWing_Att : MonoBehaviour
         }
         else
         {
+            xState.P_curhp = xState.P_maxhp;
             Debug.Log("Repair no need");
             Debug.Log("Hp UI blink effect add here");
         }
@@ -203,6 +207,7 @@ public class XWing_Att : MonoBehaviour
                 break;
 
             xState.P_curhp += repairCost;
+            xUI.P_HPImg.fillAmount += repairCost * 0.1f;
 
             if (xState.P_curhp >= xState.P_maxhp || xInput.skill2Cool <= 1f)
             {
@@ -262,8 +267,9 @@ public class XWing_Att : MonoBehaviour
     #region dash
     public void Skill4()
     {
-        if(xState.X_State == XWingState.Fly)
+        if (xState.X_State == XWingState.Fly)
         {
+            //Debug.Log("Dash Processing");
             StartCoroutine(DashOnCo());
         }
         else
@@ -288,16 +294,22 @@ public class XWing_Att : MonoBehaviour
                 dashTimer = dashDefaultTimer;
                 xMove.moveVelocity = 30.0f;
                 xInput.isSKill4 = false;
+                camShakeStart = false;
                 xCamera.transform.localPosition = Vector3.zero;
             }
             else
             {
+                xInput.isSKill4 = true;
+                if (!camShakeStart)
+                {
+                    camShakeStart = true;
+                    StartCoroutine(camShake.Shake(dashDefaultTimer, 0.1f));
+                }
                 //xCamera.transform.localPosition = new Vector3(xCamera.transform.localPosition.x, xCamera.transform.localPosition.y, dashTimer);
-                StartCoroutine(camShake.Shake(dashDefaultTimer, 0.1f));
                 xState.XS_State = XWingSkillState.Skill4;
                 dashTimer -= Time.deltaTime;
                 xMove.moveVelocity = dashSpeed;
-                Debug.Log("DASH");
+                //Debug.Log("DASH");
             }
             yield return null;
         }

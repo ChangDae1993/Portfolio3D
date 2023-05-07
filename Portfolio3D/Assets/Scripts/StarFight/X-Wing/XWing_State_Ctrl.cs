@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum XWingState
 {
@@ -36,6 +37,7 @@ public class XWing_State_Ctrl : MonoBehaviour
     public float P_maxhp = 100;
     public float P_curhp;
     public float P_xp;
+
     public int killCount;
 
     public XWingState X_State;
