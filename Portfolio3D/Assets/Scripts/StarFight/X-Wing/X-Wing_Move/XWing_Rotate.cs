@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 public class XWing_Rotate : MonoBehaviour
@@ -14,6 +15,10 @@ public class XWing_Rotate : MonoBehaviour
 
     private Camera cam;
 
+    //Todo : player 좌표 값 받아두기
+    //회전 값을 본인의 각도의 차이만큼 구하는게 훨씬 안정적!
+    //각도를 직접 회전이 아닌, 
+
     void Start()
     {
         cam = Camera.main;
@@ -23,6 +28,8 @@ public class XWing_Rotate : MonoBehaviour
     {
         rh = Input.GetAxis("Mouse X");
         rv = Input.GetAxis("Mouse Y");
+
+        //Debug.Log(rh);
 
         //Vector3 dir = new Vector3(-rv, rh, 0);
 
