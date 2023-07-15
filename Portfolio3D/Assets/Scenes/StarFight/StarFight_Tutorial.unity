@@ -2706,14 +2706,9 @@ MonoBehaviour:
   rh: 0
   rmx: 0
   cam: {fileID: 0}
-  rotateSpeed: 10
+  rotateSpeed: 5
   rotateResetSpeed: 2
-  camRightTurnPos: {x: 0, y: 0, z: 0}
-  camLeftTurnPos: {x: 0, y: 0, z: 0}
   camReturnPos: {x: 0, y: 0, z: 0}
-  left: 0
-  right: 0
-  stop: 0
 --- !u!114 &2012646473
 MonoBehaviour:
   m_ObjectHideFlags: 0

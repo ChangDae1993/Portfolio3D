@@ -133,20 +133,20 @@ public class XWing_Move : MonoBehaviour
         if (isRight)
         {
             X_Body.localRotation = Quaternion.Euler(10.0f, 0, -30.0f);
-            if (!rightMoveStart)
-            {
-                rightTurn = StartCoroutine(RightTurnCo());
-            }
+            //if (!rightMoveStart)
+            //{
+            //    rightTurn = StartCoroutine(RightTurnCo());
+            //}
         }
 
 
         if (isLeft)
         {
             X_Body.localRotation = Quaternion.Euler(10.0f, 0, 30.0f);
-            if (!leftMoveStart)
-            {
-                leftTurn = StartCoroutine(LeftTurnCo());
-            }
+            //if (!leftMoveStart)
+            //{
+            //    leftTurn = StartCoroutine(LeftTurnCo());
+            //}
         }
 
         #endregion
