@@ -251,10 +251,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce8cb79ca119c0b4fbef9e90e706b8f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectAreaRadius: 500
-  detectCol: []
+  idletTest: 0
   detectOn: 0
-  gizmoColor: {r: 0.8867924, g: 0.242225, b: 0.22922742, a: 0.6117647}
+  e_state: 0
+  detectAreaRadius: 300
+  targetPlayer: {fileID: 0}
+  detectDist: 0
 --- !u!1 &270553116
 GameObject:
   m_ObjectHideFlags: 0
@@ -2722,8 +2724,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2012646469}
-  - component: {fileID: 2012646474}
   - component: {fileID: 2012646473}
+  - component: {fileID: 2012646474}
   - component: {fileID: 2012646472}
   - component: {fileID: 2012646471}
   - component: {fileID: 2012646470}
