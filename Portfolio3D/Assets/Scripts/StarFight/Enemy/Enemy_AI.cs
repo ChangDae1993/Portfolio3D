@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Enemy_State_Ctrl : MonoBehaviour
+public class Enemy_AI : MonoBehaviour
 {
     public enum EnemyState
     {

@@ -30,7 +30,7 @@ public class Bullet_Ctrl : MonoBehaviour
         else if (other.gameObject.layer == LayerMask.NameToLayer("Enemy") ||
             other.gameObject.layer == LayerMask.NameToLayer("Explode_OBJ"))
         {
-            if (other.gameObject.TryGetComponent(out Enemy_State_Ctrl esc))
+            if (other.gameObject.TryGetComponent(out Enemy_AI esc))
             {
                 esc.E_Hit(xState.damage);
             }
