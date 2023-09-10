@@ -173,11 +173,15 @@ public class Enemy_AI : MonoBehaviour
         if (detectDist > detectAreaRadius)
         {
             //this.transform.rotation = Quaternion.identity;
-            this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Quaternion.identity, 1 * Time.deltaTime);
+            this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Quaternion.identity, 1f * Time.deltaTime);
             detectOn = false;
         }
         else
         {
+            //this.transform.rotation = Quaternion.Lerp(this.transform.rotation, targetPlayer.transform.rotation, 1f * Time.deltaTime);
+            //this.transform.rotation = Quaternion.Lerp(targetPlayer.transform.rotation,
+            //    Quaternion.LookRotation(targetPlayer.transform.position - this.transform.position),
+            //    2f * Time.deltaTime);
             this.transform.rotation = Quaternion.LookRotation(targetPlayer.transform.position - this.transform.position);
             detectOn = true;
         }
