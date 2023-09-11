@@ -48,6 +48,10 @@ public class Enemy_AI : MonoBehaviour
 
     public void EnemyStateChangePattern()
     {
+        if (currentCoroutine != null)
+        {
+            StopCoroutine(currentCoroutine);
+        }
         switch (e_state)
         {
             case EnemyState.idle:
