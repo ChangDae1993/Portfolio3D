@@ -72,8 +72,8 @@ public class Enemy_AI : MonoBehaviour
 
     IEnumerator EnemyIdle()
     {
-        while (e_state == EnemyState.idle)
-        {
+        //while (e_state == EnemyState.idle)
+        //{
             if (idletTest)
             {
                 e_state = EnemyState.patrol;
@@ -84,15 +84,15 @@ public class Enemy_AI : MonoBehaviour
             }
             //Debug.Log("Idle");
             yield return null;
-        }
+        //}
         //yield return null;
         EnemyStateChangePattern();
     }
 
     IEnumerator EnemyPatrol()
     {
-        while (e_state == EnemyState.patrol)
-        {
+        //while (e_state == EnemyState.patrol)
+        //{
             if (!idletTest)
             {
                 e_state = EnemyState.idle;
@@ -103,7 +103,7 @@ public class Enemy_AI : MonoBehaviour
             }
             //Debug.Log("Patroling");
             yield return null;
-        }
+        //}
         //yield return null;
         EnemyStateChangePattern();
     }
