@@ -63,9 +63,11 @@ public class Enemy_AI : MonoBehaviour
             case EnemyState.detect:
                 StartCoroutine(EnemyDetect());
                 break;
+            case EnemyState.attack:
+                StartCoroutine(EnemyAttack());
+                break;
             default:
                 break;
-
         }
         //yield return null;
     }
@@ -74,16 +76,16 @@ public class Enemy_AI : MonoBehaviour
     {
         //while (e_state == EnemyState.idle)
         //{
-            if (idletTest)
-            {
-                e_state = EnemyState.patrol;
-            }
-            else if (detectOn)
-            {
-                e_state = EnemyState.detect;
-            }
-            //Debug.Log("Idle");
-            yield return null;
+        if (idletTest)
+        {
+            e_state = EnemyState.patrol;
+        }
+        else if (detectOn)
+        {
+            e_state = EnemyState.detect;
+        }
+        Debug.Log("Idle");
+        yield return null;
         //}
         //yield return null;
         EnemyStateChangePattern();
@@ -93,16 +95,16 @@ public class Enemy_AI : MonoBehaviour
     {
         //while (e_state == EnemyState.patrol)
         //{
-            if (!idletTest)
-            {
-                e_state = EnemyState.idle;
-            }
-            else if (detectOn)
-            {
-                e_state = EnemyState.detect;
-            }
-            //Debug.Log("Patroling");
-            yield return null;
+        if (!idletTest)
+        {
+            e_state = EnemyState.idle;
+        }
+        else if (detectOn)
+        {
+            e_state = EnemyState.detect;
+        }
+        Debug.Log("Patroling");
+        yield return null;
         //}
         //yield return null;
         EnemyStateChangePattern();
@@ -112,7 +114,7 @@ public class Enemy_AI : MonoBehaviour
     {
         while (e_state == EnemyState.detect)
         {
-            //Debug.Log("Detect On");
+            Debug.Log("Detect On");
             if (!detectOn)
             {
                 e_state = EnemyState.patrol;
@@ -121,6 +123,11 @@ public class Enemy_AI : MonoBehaviour
             yield return null;
         }
         EnemyStateChangePattern();
+    }
+
+    IEnumerator EnemyAttack()
+    {
+        yield return null;
     }
 
     public void E_Hit(float damage)
