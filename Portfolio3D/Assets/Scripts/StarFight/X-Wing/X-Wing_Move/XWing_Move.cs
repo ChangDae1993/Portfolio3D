@@ -54,7 +54,6 @@ public class XWing_Move : MonoBehaviour
 
     void Update()
     {
-
         if (X_Input.v > 0.0f)
         {
             x_State.X_State = XWingState.Fly;

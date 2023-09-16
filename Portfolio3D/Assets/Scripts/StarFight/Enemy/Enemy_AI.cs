@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class Enemy_AI : MonoBehaviour
@@ -24,6 +23,9 @@ public class Enemy_AI : MonoBehaviour
     public EnemyState e_state = EnemyState.idle;
 
     public float detectAreaRadius;
+    public float detectAlertGage = 0f;
+    public float detectSpeed;
+
 
     public GameObject targetPlayer;
 
@@ -63,6 +65,9 @@ public class Enemy_AI : MonoBehaviour
             case EnemyState.detect:
                 StartCoroutine(EnemyDetect());
                 break;
+            case EnemyState.alert:
+                StartCoroutine(EnemyAlert());
+                break;
             case EnemyState.attack:
                 StartCoroutine(EnemyAttack());
                 break;
@@ -74,38 +79,38 @@ public class Enemy_AI : MonoBehaviour
 
     IEnumerator EnemyIdle()
     {
-        //while (e_state == EnemyState.idle)
-        //{
-        if (idletTest)
+        while (e_state == EnemyState.idle)
         {
-            e_state = EnemyState.patrol;
+            if (idletTest)
+            {
+                e_state = EnemyState.patrol;
+            }
+            else if (detectOn)
+            {
+                e_state = EnemyState.detect;
+            }
+            Debug.Log("Idle");
+            yield return null;
         }
-        else if (detectOn)
-        {
-            e_state = EnemyState.detect;
-        }
-        Debug.Log("Idle");
-        yield return null;
-        //}
         //yield return null;
         EnemyStateChangePattern();
     }
 
     IEnumerator EnemyPatrol()
     {
-        //while (e_state == EnemyState.patrol)
-        //{
-        if (!idletTest)
+        while (e_state == EnemyState.patrol)
         {
-            e_state = EnemyState.idle;
+            if (!idletTest)
+            {
+                e_state = EnemyState.idle;
+            }
+            else if (detectOn)
+            {
+                e_state = EnemyState.detect;
+            }
+            Debug.Log("Patroling");
+            yield return null;
         }
-        else if (detectOn)
-        {
-            e_state = EnemyState.detect;
-        }
-        Debug.Log("Patroling");
-        yield return null;
-        //}
         //yield return null;
         EnemyStateChangePattern();
     }
@@ -119,9 +124,33 @@ public class Enemy_AI : MonoBehaviour
             {
                 e_state = EnemyState.patrol;
             }
+
+            if (detectAlertGage >= 100f)
+            {
+                e_state = EnemyState.alert;
+            }
             //DetectArea(this.transform.position, detectAreaRadius);
             yield return null;
         }
+        EnemyStateChangePattern();
+    }
+
+    IEnumerator EnemyAlert()
+    {
+        while (e_state == EnemyState.alert)
+        {
+            if (!detectOn)
+            {
+                detectAlertGage = 0f;
+                e_state = EnemyState.detect;
+            }
+            Debug.Log("alert");
+            //if 주변에 몬스터가 3마리 이상이라면
+            //alert를 켠다 (alert가 어떤 방식인지는 제작 해야함)
+            //else 혼자라면 바로 attack모드로
+            yield return null;
+        }
+
         EnemyStateChangePattern();
     }
 
@@ -138,6 +167,27 @@ public class Enemy_AI : MonoBehaviour
     //Update is called once per frame
     void Update()
     {
+        if (e_state == EnemyState.detect)
+        {
+            //Debug.Log("!!!");
+            if (detectAlertGage <= 100f)
+            {
+                detectAlertGage += detectSpeed;
+            }
+            else
+                detectAlertGage = 100f;
+        }
+        else
+        {
+            //Debug.Log("???");
+            if (detectAlertGage >= 0f)
+            {
+                detectAlertGage -= detectSpeed;
+            }
+            else
+                detectAlertGage = 0f;
+        }
+
         DetectArea();
         //DetectArea(this.transform.position, detectAreaRadius);
     }
@@ -185,6 +235,7 @@ public class Enemy_AI : MonoBehaviour
         {
             //this.transform.rotation = Quaternion.identity;
             this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Quaternion.identity, 1f * Time.deltaTime);
+
             detectOn = false;
         }
         else
