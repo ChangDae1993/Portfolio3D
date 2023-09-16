@@ -256,7 +256,7 @@ MonoBehaviour:
   e_state: 0
   detectAreaRadius: 300
   detectAlertGage: 0
-  detectSpeed: 0.001
+  detectSpeed: 0.1
   targetPlayer: {fileID: 0}
   detectDist: 0
 --- !u!1 &270553116
