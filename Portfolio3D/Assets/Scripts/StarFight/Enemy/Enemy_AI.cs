@@ -57,19 +57,19 @@ public class Enemy_AI : MonoBehaviour
         switch (e_state)
         {
             case EnemyState.idle:
-                StartCoroutine(EnemyIdle());
+                currentCoroutine = StartCoroutine(EnemyIdle());
                 break;
             case EnemyState.patrol:
-                StartCoroutine(EnemyPatrol());
+                currentCoroutine = StartCoroutine(EnemyPatrol());
                 break;
             case EnemyState.detect:
-                StartCoroutine(EnemyDetect());
+                currentCoroutine = StartCoroutine(EnemyDetect());
                 break;
             case EnemyState.alert:
-                StartCoroutine(EnemyAlert());
+                currentCoroutine = StartCoroutine(EnemyAlert());
                 break;
             case EnemyState.attack:
-                StartCoroutine(EnemyAttack());
+                currentCoroutine = StartCoroutine(EnemyAttack());
                 break;
             default:
                 break;
@@ -79,39 +79,32 @@ public class Enemy_AI : MonoBehaviour
 
     IEnumerator EnemyIdle()
     {
-        while (e_state == EnemyState.idle)
+        if (idletTest)
         {
-            if (idletTest)
-            {
-                e_state = EnemyState.patrol;
-            }
-            else if (detectOn)
-            {
-                e_state = EnemyState.detect;
-            }
-            Debug.Log("Idle");
-            yield return null;
+            e_state = EnemyState.patrol;
         }
-        //yield return null;
+        else if (detectOn)
+        {
+            e_state = EnemyState.detect;
+        }
+        Debug.Log("Idle");
+        yield return null;
         EnemyStateChangePattern();
     }
 
     IEnumerator EnemyPatrol()
     {
-        while (e_state == EnemyState.patrol)
+        if (!idletTest)
         {
-            if (!idletTest)
-            {
-                e_state = EnemyState.idle;
-            }
-            else if (detectOn)
-            {
-                e_state = EnemyState.detect;
-            }
-            Debug.Log("Patroling");
-            yield return null;
+            e_state = EnemyState.idle;
         }
-        //yield return null;
+        else if (detectOn)
+        {
+            e_state = EnemyState.detect;
+        }
+        Debug.Log("Patroling");
+
+        yield return null;
         EnemyStateChangePattern();
     }
 
