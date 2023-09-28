@@ -79,30 +79,46 @@ public class Enemy_AI : MonoBehaviour
 
     IEnumerator EnemyIdle()
     {
-        if (idletTest)
-        {
-            e_state = EnemyState.patrol;
-        }
-        else if (detectOn)
+        //if (idletTest)
+        //{
+        //    e_state = EnemyState.patrol;
+        //}
+
+        if (detectOn)
         {
             e_state = EnemyState.detect;
         }
-        Debug.Log("Idle");
+        else
+        {
+            yield return new WaitForSeconds(Random.Range(1f, 5f));
+            e_state = EnemyState.patrol;
+        }
+        //Debug.Log("Idle");
         yield return null;
         EnemyStateChangePattern();
     }
 
     IEnumerator EnemyPatrol()
     {
-        if (!idletTest)
+        //if (!idletTest)
+        //{
+        //    e_state = EnemyState.idle;
+        //}
+        while(e_state == EnemyState.patrol)
         {
-            e_state = EnemyState.idle;
+            if (detectOn)
+            {
+                e_state = EnemyState.detect;
+            }
+            else
+            {
+                Debug.Log("랜덤으로 움직이기 here");
+                yield return new WaitForSeconds(Random.Range(2f, 5f));
+                e_state = EnemyState.idle;
+            }
         }
-        else if (detectOn)
-        {
-            e_state = EnemyState.detect;
-        }
-        Debug.Log("Patroling");
+
+        //Debug.Log("Patroling");
 
         yield return null;
         EnemyStateChangePattern();
@@ -112,10 +128,10 @@ public class Enemy_AI : MonoBehaviour
     {
         while (e_state == EnemyState.detect)
         {
-            Debug.Log("Detect On");
+            //Debug.Log("Detect On");
             if (!detectOn)
             {
-                e_state = EnemyState.patrol;
+                e_state = EnemyState.idle;
             }
 
             if (detectAlertGage >= 100f)
@@ -137,10 +153,18 @@ public class Enemy_AI : MonoBehaviour
                 detectAlertGage = 0f;
                 e_state = EnemyState.detect;
             }
-            Debug.Log("alert");
-            //if 주변에 몬스터가 3마리 이상이라면
-            //alert를 켠다 (alert가 어떤 방식인지는 제작 해야함)
-            //else 혼자라면 바로 attack모드로
+            //Debug.Log("alert");
+
+ 
+            if (detectAlertGage >= 100f)
+            {
+                //if 주변에 몬스터가 3마리 이상이라면
+                //alert를 켠다 (alert가 어떤 방식인지는 제작 해야함)
+                //else 혼자라면 바로 attack모드로
+
+                e_state = EnemyState.attack;
+            }
+
             yield return null;
         }
 
