@@ -104,7 +104,7 @@ public class Enemy_AI : MonoBehaviour
         //{
         //    e_state = EnemyState.idle;
         //}
-        while(e_state == EnemyState.patrol)
+        while (e_state == EnemyState.patrol)
         {
             if (detectOn)
             {
@@ -155,7 +155,7 @@ public class Enemy_AI : MonoBehaviour
             }
             //Debug.Log("alert");
 
- 
+
             if (detectAlertGage >= 100f)
             {
                 //if 주변에 몬스터가 3마리 이상이라면
@@ -171,9 +171,23 @@ public class Enemy_AI : MonoBehaviour
         EnemyStateChangePattern();
     }
 
+
+    public float attackMoveSpeed;
+    public float rotateSpeed;
+
     IEnumerator EnemyAttack()
     {
-        yield return null;
+        while (e_state == EnemyState.attack)
+        {
+            Vector3 lookDIr = targetPlayer.transform.position - this.transform.position;
+            this.transform.rotation =
+                Quaternion.Lerp(this.transform.rotation, Quaternion.LookRotation(lookDIr),
+                Time.deltaTime * rotateSpeed);
+
+            //this.transform.position =
+            yield return null;
+
+        }
     }
 
     public void E_Hit(float damage)
@@ -193,6 +207,11 @@ public class Enemy_AI : MonoBehaviour
             }
             else
                 detectAlertGage = 100f;
+        }
+        else if (e_state == EnemyState.retreat)
+        {
+            if (detectAlertGage > 0f)
+                detectAlertGage = 0f;
         }
         else
         {
