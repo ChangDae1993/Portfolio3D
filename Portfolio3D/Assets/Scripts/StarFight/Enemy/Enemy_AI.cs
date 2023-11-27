@@ -269,6 +269,9 @@ public class Enemy_AI : MonoBehaviour
 
         if (detectDist > detectAreaRadius)
         {
+            //rotation돌아가는 기준을 identity로 잡지 않고 detect 상태에 들어가면서
+            //기존의 rotation값을 저장 한 후 그뒤에 rotate 시작,
+            //detectOn이 끝난 후 Quaterion.Lerp의 값을 저장한 detect 시작 전 rotation값으로 Lerp시키기
             //this.transform.rotation = Quaternion.identity;
             this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Quaternion.identity, 1f * Time.deltaTime);
 
