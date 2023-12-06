@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Enemy_AI : MonoBehaviour
 {
@@ -98,12 +99,15 @@ public class Enemy_AI : MonoBehaviour
         EnemyStateChangePattern();
     }
 
+
+    [SerializeField] private float rotateTimer;
     IEnumerator EnemyPatrol()
     {
         //if (!idletTest)
         //{
         //    e_state = EnemyState.idle;
         //}
+
         while (e_state == EnemyState.patrol)
         {
             if (detectOn)
@@ -112,7 +116,24 @@ public class Enemy_AI : MonoBehaviour
             }
             else
             {
-                Debug.Log("랜덤으로 움직이기 here");
+                rotateTimer = 15f;
+
+                float x = Random.Range(-0.5f, 0.5f);
+                float y = Random.Range(-0.5f, 0.5f);
+                float z = Random.Range(-0.5f, 0.5f);
+                while (rotateTimer > 0f)
+                {
+                    rotateTimer -= 0.1f;
+
+                    Debug.Log("랜덤으로 움직이기 here");
+                    this.transform.eulerAngles +=
+                        new Vector3(x,y,z);
+
+                    this.transform.Translate(Vector3.forward * 0.5f);
+                    yield return null;
+                }
+
+
                 yield return new WaitForSeconds(Random.Range(2f, 5f));
                 e_state = EnemyState.idle;
             }
@@ -273,8 +294,7 @@ public class Enemy_AI : MonoBehaviour
             //기존의 rotation값을 저장 한 후 그뒤에 rotate 시작,
             //detectOn이 끝난 후 Quaterion.Lerp의 값을 저장한 detect 시작 전 rotation값으로 Lerp시키기
             //this.transform.rotation = Quaternion.identity;
-            this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Quaternion.identity, 1f * Time.deltaTime);
-
+            //this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Quaternion.identity, 1f * Time.deltaTime);
             detectOn = false;
         }
         else
