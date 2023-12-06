@@ -125,14 +125,13 @@ public class Enemy_AI : MonoBehaviour
                 {
                     rotateTimer -= 0.1f;
 
-                    Debug.Log("랜덤으로 움직이기 here");
+                    //Debug.Log("랜덤으로 움직이기 here");
                     this.transform.eulerAngles +=
                         new Vector3(x,y,z);
 
                     this.transform.Translate(Vector3.forward * 0.5f);
                     yield return null;
                 }
-
 
                 yield return new WaitForSeconds(Random.Range(2f, 5f));
                 e_state = EnemyState.idle;
