@@ -331,8 +331,22 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: f4e223f5dcd1a144bfebd31892a13564
     GuidInternal: 
-    m_lastTime: -8584990039629831568
-    List: []
+    m_lastTime: -8584990029899279590
+    List:
+    - name: BGM
+      guid: bd257ad7e8797246ac0501ebd36a4b07
+      id: 412724365
+      PathAndIcons:
+      - ElementName: SoundBanks
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: f4e223f5dcd1a144bfebd31892a13564
+      - ElementName: BGM
+        ObjectType: 7
+        guid: bd257ad7e8797246ac0501ebd36a4b07
+      Path: SoundBanks\Default Work Unit\BGM
   EventWwu:
   - PhysicalPath: Events\Default Work Unit.wwu
     PathAndIcons:
@@ -345,8 +359,25 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: dd017123ef4de742b2b5939142682846
     GuidInternal: 
-    m_lastTime: -8584990039629971634
-    List: []
+    m_lastTime: -8584990029899035170
+    List:
+    - name: BGM_Intro
+      guid: bdfea66cf1201e4b9b32e55daae477f4
+      id: 1812305438
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: dd017123ef4de742b2b5939142682846
+      - ElementName: BGM_Intro
+        ObjectType: 3
+        guid: bdfea66cf1201e4b9b32e55daae477f4
+      Path: Events\Default Work Unit\BGM_Intro
+      maxAttenuation: 0
+      maxDuration: 85.714325
+      minDuration: 85.714325
   RtpcWwu:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
     PathAndIcons:
@@ -404,8 +435,8 @@ MonoBehaviour:
     m_lastTime: -8584990039631227679
     List: []
   ExpandedFileSystemItemIds: 
-  ExpandedWaapiItemIds: 
+  ExpandedWaapiItemIds: 020000000300000005000000060000000b0000000c000000
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
-  currentDataSource: 0
+  currentDataSource: 1
   CurrentPluginConfig: 
