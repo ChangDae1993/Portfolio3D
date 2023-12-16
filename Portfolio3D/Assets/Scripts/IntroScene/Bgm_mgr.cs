@@ -21,7 +21,6 @@ public class Bgm_mgr : MonoBehaviour
 
     private void Start()
     {
-
-        AkSoundEngine.PostEvent("BGM_Intro", this.gameObject);
+        AkSoundEngine.PostEvent("Main_Title", this.gameObject);
     }
 }

@@ -11,11 +11,6 @@
 
 namespace AK
 {
-    namespace EVENTS
-    {
-        static const AkUniqueID BGM_INTRO = 1812305438U;
-    } // namespace EVENTS
-
     namespace BANKS
     {
         static const AkUniqueID INIT = 1355168291U;
