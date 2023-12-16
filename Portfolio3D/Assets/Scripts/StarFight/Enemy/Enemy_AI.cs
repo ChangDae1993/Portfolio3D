@@ -101,6 +101,10 @@ public class Enemy_AI : MonoBehaviour
 
 
     [SerializeField] private float rotateTimer;
+
+    private float randomx;
+    private float randomy;
+    private float randomz;
     IEnumerator EnemyPatrol()
     {
         //if (!idletTest)
@@ -118,16 +122,16 @@ public class Enemy_AI : MonoBehaviour
             {
                 rotateTimer = 15f;
 
-                float x = Random.Range(-0.5f, 0.5f);
-                float y = Random.Range(-0.5f, 0.5f);
-                float z = Random.Range(-0.5f, 0.5f);
+                randomx = Random.Range(-0.5f, 0.5f);
+                randomy = Random.Range(-0.5f, 0.5f);
+                randomz = Random.Range(-0.5f, 0.5f);
                 while (rotateTimer > 0f)
                 {
                     rotateTimer -= 0.1f;
 
                     //Debug.Log("랜덤으로 움직이기 here");
                     this.transform.eulerAngles +=
-                        new Vector3(x,y,z);
+                        new Vector3(randomx, randomy, randomz);
 
                     this.transform.Translate(Vector3.forward * 0.5f);
                     yield return null;
