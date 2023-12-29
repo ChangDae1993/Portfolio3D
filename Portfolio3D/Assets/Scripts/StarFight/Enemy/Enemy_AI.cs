@@ -137,7 +137,7 @@ public class Enemy_AI : MonoBehaviour
                     yield return null;
                 }
 
-                yield return new WaitForSeconds(Random.Range(2f, 5f));
+                //yield return new WaitForSeconds(Random.Range(2f, 5f));
                 e_state = EnemyState.idle;
             }
         }
