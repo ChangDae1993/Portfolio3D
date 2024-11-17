@@ -128,8 +128,8 @@ public class Enemy_AI : MonoBehaviour
                 while (rotateTimer > 0f)
                 {
                     rotateTimer -= 0.1f;
-
-                    //Debug.Log("·£´ýÀ¸·Î ¿òÁ÷ÀÌ±â here");
+                    Debug.Log("í•œêµ­ì–´ test");
+                    //Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì±ï¿½ here");
                     this.transform.eulerAngles +=
                         new Vector3(randomx, randomy, randomz);
 
@@ -182,9 +182,9 @@ public class Enemy_AI : MonoBehaviour
 
             if (detectAlertGage >= 100f)
             {
-                //if ÁÖº¯¿¡ ¸ó½ºÅÍ°¡ 3¸¶¸® ÀÌ»óÀÌ¶ó¸é
-                //alert¸¦ ÄÒ´Ù (alert°¡ ¾î¶² ¹æ½ÄÀÎÁö´Â Á¦ÀÛ ÇØ¾ßÇÔ)
-                //else È¥ÀÚ¶ó¸é ¹Ù·Î attack¸ðµå·Î
+                //if ï¿½Öºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í°ï¿½ 3ï¿½ï¿½ï¿½ï¿½ ï¿½Ì»ï¿½ï¿½Ì¶ï¿½ï¿½
+                //alertï¿½ï¿½ ï¿½Ò´ï¿½ (alertï¿½ï¿½ ï¿½î¶² ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø¾ï¿½ï¿½ï¿½)
+                //else È¥ï¿½Ú¶ï¿½ï¿½ ï¿½Ù·ï¿½ attackï¿½ï¿½ï¿½ï¿½
 
                 e_state = EnemyState.attack;
             }
@@ -293,9 +293,9 @@ public class Enemy_AI : MonoBehaviour
 
         if (detectDist > detectAreaRadius)
         {
-            //rotationµ¹¾Æ°¡´Â ±âÁØÀ» identity·Î ÀâÁö ¾Ê°í detect »óÅÂ¿¡ µé¾î°¡¸é¼­
-            //±âÁ¸ÀÇ rotation°ªÀ» ÀúÀå ÇÑ ÈÄ ±×µÚ¿¡ rotate ½ÃÀÛ,
-            //detectOnÀÌ ³¡³­ ÈÄ Quaterion.LerpÀÇ °ªÀ» ÀúÀåÇÑ detect ½ÃÀÛ Àü rotation°ªÀ¸·Î Lerp½ÃÅ°±â
+            //rotationï¿½ï¿½ï¿½Æ°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ identityï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½ detect ï¿½ï¿½ï¿½Â¿ï¿½ ï¿½ï¿½î°¡ï¿½é¼­
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ rotationï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½×µÚ¿ï¿½ rotate ï¿½ï¿½ï¿½ï¿½,
+            //detectOnï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Quaterion.Lerpï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ detect ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ rotationï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Lerpï¿½ï¿½Å°ï¿½ï¿½
             //this.transform.rotation = Quaternion.identity;
             //this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Quaternion.identity, 1f * Time.deltaTime);
             detectOn = false;
